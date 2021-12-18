@@ -1,7 +1,10 @@
 <template>
   <el-container>
     <el-header>
-      <el-dropdown>
+      <el-dropdown trigger="click">
+        <span @click="changeCollapse" class="el-dropdown-link"> 菜单展开 </span>
+      </el-dropdown>
+      <el-dropdown trigger="click">
         <span class="el-dropdown-link">
           Dropdown List
           <el-icon class="el-icon--right">
@@ -26,6 +29,27 @@
   </el-container>
 </template>
 
+<script>
+import { mapState } from 'vuex'
+
+export default {
+  data () {
+    return {}
+  },
+  computed: {
+    ...mapState(['isCollapse'])
+  },
+  created: function () {
+    console.log(this.isCollapse)
+  },
+  methods: {
+    changeCollapse: function () {
+      this.$store.commit('changeCollapse')
+    }
+  }
+}
+</script>
+
 <style scoped>
 /*  */
 .el-container {
@@ -34,6 +58,9 @@
 .el-header {
   background-color: #373d41;
   height: 60px;
+}
+.el-main {
+  background-color: #e9eef3;
 }
 .el-footer {
   background-color: #333744;

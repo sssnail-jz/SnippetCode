@@ -1,50 +1,54 @@
 <template>
-  <el-container class="el-outer">
-    <el-aside width="150px" class="el-outer-menu">
-      <el-menu default-active="2" class="el-menu-vertical-demo">
-        <el-submenu index="1">
-          <template #title>
-            <el-icon><location /></el-icon>
-            <span>One</span>
-          </template>
-          <el-menu-item-group title="Group One">
-            <el-menu-item index="1-1">item one</el-menu-item>
-            <el-menu-item index="1-2">item one</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="Group Two">
-            <el-menu-item index="1-3">item three</el-menu-item>
-          </el-menu-item-group>
-          <el-submenu index="1-4">
-            <template #title>item four</template>
-            <el-menu-item index="1-4-1">item one</el-menu-item>
-          </el-submenu>
-        </el-submenu>
-        <el-menu-item index="2">
-          <el-icon><icon-menu /></el-icon>
-          <span>Two</span>
-        </el-menu-item>
-        <el-menu-item index="3" disabled>
-          <el-icon><document /></el-icon>
-          <span>Three</span>
-        </el-menu-item>
-        <el-menu-item index="4">
-          <el-icon><setting /></el-icon>
-          <span>Four</span>
-        </el-menu-item>
-      </el-menu>
-    </el-aside>
-    <el-main class="el-outer-main">
+  <el-container>
+    <el-menu
+      default-active="2"
+      class="el-menu-vertical-demo"
+      background-color="#C0C4CC"
+      active-text-color="#ffd04b"
+      :unique-opened="true"
+      :collapse="isCollapse"
+      :style="menuStyleObject"
+    >
+      <el-submenu index="1">
+        <template #title>
+          <i class="iconfont icon-user"></i>
+          <span>Snippet</span>
+        </template>
+        <el-menu-item index="1-1">发布</el-menu-item>
+        <el-menu-item index="1-2">管理</el-menu-item>
+      </el-submenu>
+      <el-menu-item index="2">
+        <i class="iconfont icon-baobiao"></i>
+        <span>统计</span>
+      </el-menu-item>
+      <el-menu-item index="3">
+        <i class="iconfont icon-users"></i>
+        <span>圈子</span>
+      </el-menu-item>
+      <el-menu-item index="4">
+        <i class="iconfont icon-showpassword"></i>
+        <span>社区</span>
+      </el-menu-item>
+    </el-menu>
+    <el-main>
       <router-view></router-view>
     </el-main>
   </el-container>
 </template>
 
-<script lang="ts">
+<script>
+import { mapState } from 'vuex'
+
 export default {
   data () {
-    return {
-      articleList: [1, 2, 3]
-    }
+    return {}
+  },
+  computed: {
+    ...mapState(['isCollapse', 'menuStyleObject'])
+  },
+  created: function () {
+    console.log(this.isCollapse)
+    console.log(this.menuStyleObject)
   }
 }
 </script>
@@ -58,31 +62,22 @@ export default {
   background-color: #373d41;
   height: 60px;
 }
-.el-footer {
-  background-color: #333744;
-  height: 60px;
-}
-
-/*  */
-.el-outer {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-.el-outer-menu {
-  display: block;
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-.el-outer-main {
+.el-main {
   width: 100%;
   margin: 0;
   padding: 0;
   border: 0;
 }
+
+/*  */
 .el-menu {
   height: 100%;
+
   border: 0;
+  overflow: hidden;
+}
+i {
+  margin-left: 2px;
+  margin-right: 5px;
 }
 </style>
