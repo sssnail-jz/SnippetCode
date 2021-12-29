@@ -17,6 +17,18 @@
             </div>
           </template>
           <div class="text item">
+            <el-image
+              style="
+                width: 100px;
+                height: 100px;
+                align: right;
+                float: right;
+                hspace: 5;
+                vspace: 5;
+              "
+              :src="item.cover"
+              :fit="fit"
+            ></el-image>
             {{ item.content }}
           </div>
         </el-card>
