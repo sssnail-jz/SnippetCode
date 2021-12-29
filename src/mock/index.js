@@ -13,6 +13,10 @@ module.exports = function (app) {
     var json = getJsonFile('./snippet-list.json5')
     res.json(Mock.mock(json))
   })
+  app.get('/snippet/snippet-tag-cloud', function (rep, res) {
+    var json = getJsonFile('./snippet-tag-cloud.json5')
+    res.json(Mock.mock(json))
+  })
   app.get('/user/user-list', function (rep, res) {
     var json = getJsonFile('./user-list.json5')
     res.json(Mock.mock(json))

@@ -12,5 +12,12 @@
     "email": "@email()",
     "avatar": "@image('120x120','#02adea','Hello')",
     "snippetCount": "@integer(0, 100)"
+  },
+  {
+  "id": "@id(10,15)",
+  "name": "@title(1, 2)",
+  "email": "@email()",
+  "avatar": "@image('120x120','#02adea','Hello')",
+  "snippetCount": "@integer(0, 100)"
   }
 ]

@@ -55,6 +55,22 @@
             </ul>
           </div>
         </el-card>
+        <!-- tag cloud -->
+        <el-card class="box-card-aside">
+          <div class="text item">
+            <el-tag
+              v-for="item in snippetTagCloudList"
+              :key="item.title"
+              :type="item.color"
+              effect="dark"
+              style="margin-right: 10px; margin-bottom: 10px"
+            >
+              <el-link :underline="false">
+                {{ item.title }}
+              </el-link>
+            </el-tag>
+          </div>
+        </el-card>
       </div></el-col
     >
     <el-col :span="2"><div class="grid-content bg-margin"></div></el-col>
@@ -68,7 +84,8 @@ export default {
   data () {
     return {
       snippetList: [],
-      userList: []
+      userList: [],
+      snippetTagCloudList: []
     }
   },
   created () {
@@ -76,6 +93,14 @@ export default {
       .get('/snippet/snippet-list')
       .then((res) => {
         this.snippetList = res.data
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+    axios
+      .get('/snippet/snippet-tag-cloud')
+      .then((res) => {
+        this.snippetTagCloudList = res.data
       })
       .catch((err) => {
         console.error(err)
@@ -121,6 +146,7 @@ export default {
 }
 
 .box-card-aside {
+  margin-bottom: 10px;
   width: 100%;
 }
 .card-button-content {
