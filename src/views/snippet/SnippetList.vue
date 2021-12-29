@@ -3,16 +3,22 @@
     <el-col :span="2"><div class="grid-content bg-margin"></div></el-col>
     <el-col :span="14"
       ><div class="grid-content bg-content">
-        <el-card :key="o" v-for="o in 10" class="box-card-content">
+        <el-card
+          :key="item.id"
+          v-for="item in snippetList"
+          class="box-card-content"
+        >
           <template #header>
             <div class="card-header-content">
-              <span>Card name</span>
+              <span>{{ item.title }}</span>
               <el-button class="card-button-content" type="text"
-                >Operation button</el-button
+                >修改</el-button
               >
             </div>
           </template>
-          <div class="text item"></div>
+          <div class="text item">
+            {{ item.content }}
+          </div>
         </el-card>
       </div>
     </el-col>
@@ -25,6 +31,28 @@
     <el-col :span="2"><div class="grid-content bg-margin"></div></el-col>
   </el-row>
 </template>
+
+<script>
+import axios from 'axios'
+
+export default {
+  data () {
+    return {
+      snippetList: []
+    }
+  },
+  mounted () {
+    axios
+      .get('/snippet/snippet-list')
+      .then((res) => {
+        this.snippetList = res.data
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+  }
+}
+</script>
 
 <style scoped>
 /*  */

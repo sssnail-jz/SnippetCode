@@ -22,9 +22,6 @@ export default {
   computed: {
     ...mapState(['isCollapse'])
   },
-  created: function () {
-    console.log(this.isCollapse)
-  },
   methods: {
     changeCollapse: function () {
       this.$store.commit('changeCollapse')

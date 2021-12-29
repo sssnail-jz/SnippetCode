@@ -39,7 +39,6 @@
 
 <script>
 import { mapState } from 'vuex'
-import axios from 'axios'
 
 export default {
   data () {
@@ -47,16 +46,6 @@ export default {
   },
   computed: {
     ...mapState(['isCollapse', 'menuStyleObject'])
-  },
-  mounted () {
-    axios
-      .get('/snippet/snippet-list')
-      .then((res) => {
-        console.log(res.data)
-      })
-      .catch((err) => {
-        console.error(err)
-      })
   }
 }
 </script>
