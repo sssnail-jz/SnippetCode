@@ -3,6 +3,7 @@
     <el-col :span="2"><div class="grid-content bg-margin"></div></el-col>
     <el-col :span="14"
       ><div class="grid-content bg-content">
+        <!-- snippet-list card -->
         <el-card
           :key="item.id"
           v-for="item in snippetList"
@@ -10,36 +11,52 @@
         >
           <template #header>
             <div class="card-header-content">
-              <span>{{ item.title }}</span>
+              <el-link type="primary" style="font-size: 20px">{{
+                item.title
+              }}</el-link>
               <el-button class="card-button-content" type="text"
                 >修改</el-button
               >
             </div>
           </template>
-          <div class="text item">
+          <div class="text item content-div">
             <el-image
-              style="
-                width: 100px;
-                height: 100px;
-                align: right;
-                float: right;
-                hspace: 5;
-                vspace: 5;
-              "
+              style="align: right; float: right; hspace: 15px; vspace: 15px"
               :src="item.cover"
               :fit="fit"
             ></el-image>
             {{ item.content }}
+            <div class="more-div"></div>
           </div>
         </el-card>
       </div>
     </el-col>
     <el-col :span="6"
       ><div class="grid-content bg-aside">
+        <!-- user-list card -->
         <el-card class="box-card-aside">
-          <div class="text item"></div>
-        </el-card></div
-    ></el-col>
+          <div class="text item">
+            <ul>
+              <li
+                :key="item.id"
+                v-for="item in userList"
+                style="display: flex; align-items: center; margin-bottom: 10px"
+              >
+                <el-link :underline="false">
+                  <el-avatar
+                    :size="50"
+                    :src="item.avatar"
+                    style="margin-right: 10px"
+                  ></el-avatar
+                ></el-link>
+
+                <el-link>{{ item.name }}（{{ item.snippetCount }}）</el-link>
+              </li>
+            </ul>
+          </div>
+        </el-card>
+      </div></el-col
+    >
     <el-col :span="2"><div class="grid-content bg-margin"></div></el-col>
   </el-row>
 </template>
@@ -50,14 +67,23 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      snippetList: []
+      snippetList: [],
+      userList: []
     }
   },
-  mounted () {
+  created () {
     axios
       .get('/snippet/snippet-list')
       .then((res) => {
         this.snippetList = res.data
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+    axios
+      .get('/user/user-list')
+      .then((res) => {
+        this.userList = res.data
       })
       .catch((err) => {
         console.error(err)
@@ -96,10 +122,28 @@ export default {
 
 .box-card-aside {
   width: 100%;
-  height: 300px;
 }
 .card-button-content {
   position: absolute;
   right: 20px;
+}
+/*  */
+.content-div {
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 500px;
+  overflow: hidden;
+  position: relative;
+}
+.more-div {
+  height: 130px;
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  background: -webkit-linear-gradient(
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 1)
+  );
 }
 </style>
