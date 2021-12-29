@@ -2,7 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Main from '../views/Main.vue'
-import Article from '../views/article/Article.vue'
+import SnippetList from '../views/snippet/SnippetList.vue'
+import SnippetDetail from '../views/snippet/SnippetDetail.vue'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -15,11 +16,15 @@ const router = new VueRouter({
         {
           path: 'home',
           component: Main,
-          redirect: '/home/article',
+          redirect: '/snippet-list',
           children: [
             {
-              path: 'article',
-              component: Article
+              path: 'snippet-list',
+              component: SnippetList
+            },
+            {
+              path: 'snippet-create',
+              component: SnippetDetail
             }
           ]
         }

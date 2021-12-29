@@ -8,13 +8,14 @@
       :unique-opened="true"
       :collapse="isCollapse"
       :style="menuStyleObject"
+      :router="true"
     >
-      <el-submenu index="1">
+      <el-submenu>
         <template #title>
           <i class="iconfont icon-user"></i>
           <span>Snippet</span>
         </template>
-        <el-menu-item index="1-1">发布</el-menu-item>
+        <el-menu-item index="/home/snippet-create">发布</el-menu-item>
         <el-menu-item index="1-2">管理</el-menu-item>
       </el-submenu>
       <el-menu-item index="2">
