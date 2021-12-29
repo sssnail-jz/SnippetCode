@@ -51,8 +51,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../styles/mixin.scss';
-
 .createPost-container {
   position: relative;
 
@@ -61,7 +59,6 @@ export default {
 
     .postInfo-container {
       position: relative;
-      @include clearfix;
 
       .postInfo-container-item {
         float: left;

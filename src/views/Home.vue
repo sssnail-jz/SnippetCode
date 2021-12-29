@@ -10,7 +10,7 @@
       :style="menuStyleObject"
       :router="true"
     >
-      <el-submenu>
+      <el-submenu index="1">
         <template #title>
           <i class="iconfont icon-user"></i>
           <span>Snippet</span>
@@ -39,6 +39,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import axios from 'axios'
 
 export default {
   data () {
@@ -47,9 +48,15 @@ export default {
   computed: {
     ...mapState(['isCollapse', 'menuStyleObject'])
   },
-  created: function () {
-    console.log(this.isCollapse)
-    console.log(this.menuStyleObject)
+  mounted () {
+    axios
+      .get('/snippet/snippet-list')
+      .then((res) => {
+        console.log(res.data)
+      })
+      .catch((err) => {
+        console.error(err)
+      })
   }
 }
 </script>

@@ -16,7 +16,7 @@ const router = new VueRouter({
         {
           path: 'home',
           component: Main,
-          redirect: '/snippet-list',
+          redirect: '/home/snippet-list',
           children: [
             {
               path: 'snippet-list',
