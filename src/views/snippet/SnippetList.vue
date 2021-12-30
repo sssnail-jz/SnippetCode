@@ -11,9 +11,11 @@
         >
           <template #header>
             <div class="card-header-content">
-              <el-link type="primary" style="font-size: 20px">{{
-                item.title
-              }}</el-link>
+              <mallki
+                class-name="mallki-text"
+                style="font-size: 20px"
+                :text="item.title"
+              />
               <el-button class="card-button-content" type="text"
                 >修改</el-button
               >
@@ -43,12 +45,15 @@
                 style="display: flex; align-items: center; margin-bottom: 10px"
               >
                 <el-link :underline="false">
-                  <el-avatar
-                    :size="50"
-                    :src="item.avatar"
+                  <pan-thumb
+                    width="50px"
+                    height="50px"
+                    :image="item.avatar"
                     style="margin-right: 10px"
-                  ></el-avatar
-                ></el-link>
+                  >
+                    {{ item.name }}
+                  </pan-thumb>
+                </el-link>
 
                 <el-link>{{ item.name }}（{{ item.snippetCount }}）</el-link>
               </li>
@@ -85,10 +90,14 @@
 <script>
 import axios from 'axios'
 import PieChart from '../../components/Charts/PieChart.vue'
+import Mallki from '../../components/TextHoverEffect/Mallki'
+import PanThumb from '../../components/PanThumb'
 
 export default {
   components: {
-    PieChart
+    PieChart,
+    Mallki,
+    PanThumb
   },
   data () {
     return {
