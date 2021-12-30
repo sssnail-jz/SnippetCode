@@ -71,16 +71,25 @@
             </el-tag>
           </div>
         </el-card>
-      </div></el-col
-    >
+        <!-- pie chart -->
+        <el-card class="box-card-aside">
+          <div class="text item" style="height: 300px">
+            <pie-chart />
+          </div>
+        </el-card></div
+    ></el-col>
     <el-col :span="2"><div class="grid-content bg-margin"></div></el-col>
   </el-row>
 </template>
 
 <script>
 import axios from 'axios'
+import PieChart from '../../components/Charts/PieChart.vue'
 
 export default {
+  components: {
+    PieChart
+  },
   data () {
     return {
       snippetList: [],

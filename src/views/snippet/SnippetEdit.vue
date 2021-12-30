@@ -1,11 +1,6 @@
 <template>
   <div class="createPost-container">
-    <el-form
-      ref="postForm"
-      :model="postForm"
-      :rules="rules"
-      class="form-container"
-    >
+    <el-form ref="postForm" :model="postForm" class="form-container">
       <div class="createPost-main-container">
         <el-form-item prop="content" style="margin-bottom: 30px">
           <Tinymce ref="editor" v-model="postForm.content" :height="400" />
@@ -19,20 +14,20 @@
 import Tinymce from '../../components/Tinymce'
 
 const defaultForm = {
-  title: '', // 文章题目
-  content: '', // 文章内容
-  image_uri: '', // 文章图片
-  display_time: undefined, // 前台展示时间
-  comment_disabled: false
+  title: '',
+  content: '',
+  cover: '',
+  publishDate: undefined,
+  commentDisabled: false
 }
 
 export default {
-  name: 'ArticleDetail',
+  name: 'ArticleEdit',
   components: {
     Tinymce
   },
   props: {
-    isEdit: {
+    isNew: {
       type: Boolean,
       default: false
     }

@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Main from '../views/Main.vue'
 import SnippetList from '../views/snippet/SnippetList.vue'
-import SnippetDetail from '../views/snippet/SnippetDetail.vue'
+import SnippetEdit from '../views/snippet/SnippetEdit.vue'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -24,7 +24,7 @@ const router = new VueRouter({
             },
             {
               path: 'snippet-create',
-              component: SnippetDetail
+              component: SnippetEdit
             }
           ]
         }
