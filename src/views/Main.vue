@@ -2,7 +2,7 @@
   <el-container>
     <el-header>
       <el-dropdown trigger="click">
-        <span @click="changeCollapse" class="el-dropdown-link"> 菜单 </span>
+        <span @click="changeCollapse" class="el-dropdown-link"> menu</span>
       </el-dropdown>
     </el-header>
     <el-main>
