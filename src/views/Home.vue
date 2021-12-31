@@ -55,9 +55,43 @@
       v-if="drawer"
       :visible.sync="drawer"
       :with-header="false"
-      :size="300"
+      :size="500"
     >
-      <span>Hi there!</span>
+      <el-timeline>
+        <el-timeline-item
+          center
+          timestamp="2018/4/12"
+          placement="top"
+          :color="green"
+        >
+          <el-card>
+            <h4>新增功能</h4>
+            <p>Tom committed 2018/4/12 20:46</p>
+          </el-card>
+        </el-timeline-item>
+        <el-timeline-item
+          center
+          timestamp="2018/4/3"
+          placement="top"
+          :color="blue"
+        >
+          <el-card>
+            <h4>修改bug</h4>
+            <p>Tom committed 2018/4/3 20:46</p>
+          </el-card>
+        </el-timeline-item>
+        <el-timeline-item
+          center="true"
+          timestamp="2018/4/2"
+          placement="top"
+          :color="green"
+        >
+          <el-card>
+            <h4>新增功能</h4>
+            <p>Tom committed 2018/4/2 20:46</p>
+          </el-card>
+        </el-timeline-item>
+      </el-timeline>
     </el-drawer>
   </el-container>
 </template>
@@ -68,7 +102,9 @@ import { mapState } from 'vuex'
 export default {
   data () {
     return {
-      drawer: false
+      drawer: false,
+      green: '#0bbd87',
+      blue: '#0000ff'
     }
   },
   computed: {
@@ -104,5 +140,9 @@ export default {
   font-size: 25px;
   margin-left: -2px;
   margin-right: 10px;
+}
+/*  */
+.el-timeline {
+  padding: 20px;
 }
 </style>
