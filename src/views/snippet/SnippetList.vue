@@ -79,7 +79,7 @@
         <!-- pie chart -->
         <el-card class="box-card-aside">
           <div class="text item" style="height: 300px">
-            <pie-chart />
+            <pie-chart :hight="85" />
           </div>
         </el-card></div
     ></el-col>

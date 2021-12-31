@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "2115119",
+      "name": "我管理的",
+      "font_class": "woguanlide",
+      "unicode": "e64e",
+      "unicode_decimal": 58958
+    },
+    {
+      "icon_id": "18051048",
+      "name": "发布",
+      "font_class": "fabu",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "23949507",
+      "name": "统计",
+      "font_class": "tongji",
+      "unicode": "ec62",
+      "unicode_decimal": 60514
+    },
+    {
       "icon_id": "3789493",
       "name": "写作",
       "font_class": "tubiaozhizuomoban-",

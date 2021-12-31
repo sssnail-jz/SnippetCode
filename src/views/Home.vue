@@ -12,28 +12,44 @@
     >
       <el-submenu index="1">
         <template #title>
-          <svg class="menuicon icon" aria-hidden="true">
+          <svg class="menu-icon icon" aria-hidden="true">
             <use xlink:href="#icon-tubiaozhizuomoban-"></use>
           </svg>
           <span>Snippet</span>
         </template>
-        <el-menu-item index="/home/snippet/create">发布</el-menu-item>
-        <el-menu-item index="1-2">管理</el-menu-item>
+        <el-menu-item index="/home/snippet/create">
+          <svg class="menu-item-icon icon" aria-hidden="true">
+            <use xlink:href="#icon-fabu"></use>
+          </svg>
+          <span>发布</span>
+        </el-menu-item>
+        <el-menu-item index="1-2">
+          <svg class="menu-item-icon icon" aria-hidden="true">
+            <use xlink:href="#icon-woguanlide"></use>
+          </svg>
+          <span>管理</span></el-menu-item
+        >
       </el-submenu>
-      <el-menu-item index="/home/calculate">
-        <svg class="menuicon icon" aria-hidden="true">
+      <el-menu-item index="/home/count">
+        <svg class="menu-icon icon" aria-hidden="true">
           <use xlink:href="#icon-zhexiantu"></use>
+        </svg>
+        <span>数据</span>
+      </el-menu-item>
+      <el-menu-item index="/home/calculate">
+        <svg class="menu-icon icon" aria-hidden="true">
+          <use xlink:href="#icon-tongji"></use>
         </svg>
         <span>统计</span>
       </el-menu-item>
       <el-menu-item index="3">
-        <svg class="menuicon icon" aria-hidden="true">
+        <svg class="menu-icon icon" aria-hidden="true">
           <use xlink:href="#icon-quanzi"></use>
         </svg>
         <span>圈子</span>
       </el-menu-item>
       <el-menu-item index="4">
-        <svg class="menuicon icon" aria-hidden="true">
+        <svg class="menu-icon icon" aria-hidden="true">
           <use xlink:href="#icon-shequpinglun"></use>
         </svg>
         <span>社区</span>
@@ -43,7 +59,7 @@
       <router-view></router-view>
     </el-main>
     <svg
-      class="menuicon icon"
+      class="menu-icon icon"
       aria-hidden="true"
       style="position: fixed; top: 50%; right: 20px; font-size: 60px"
       @click="drawer = true"
@@ -136,10 +152,17 @@ export default {
   border: 0;
   overflow: hidden;
 }
-.menuicon {
+.menu-icon {
   font-size: 25px;
   margin-left: -2px;
   margin-right: 10px;
+  margin-bottom: -2px;
+}
+.menu-item-icon {
+  font-size: 20px;
+  margin-left: -2px;
+  margin-right: 10px;
+  margin-bottom: -2px;
 }
 /*  */
 .el-timeline {

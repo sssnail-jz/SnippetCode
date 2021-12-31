@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3112440 */
-  src: url('iconfont.woff2?t=1640938642982') format('woff2'),
-       url('iconfont.woff?t=1640938642982') format('woff'),
-       url('iconfont.ttf?t=1640938642982') format('truetype');
+  src: url('iconfont.woff2?t=1640951494840') format('woff2'),
+       url('iconfont.woff?t=1640951494840') format('woff'),
+       url('iconfont.ttf?t=1640951494840') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,18 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-woguanlide:before {
+  content: "\e64e";
+}
+
+.icon-fabu:before {
+  content: "\e604";
+}
+
+.icon-tongji:before {
+  content: "\ec62";
 }
 
 .icon-tubiaozhizuomoban-:before {
