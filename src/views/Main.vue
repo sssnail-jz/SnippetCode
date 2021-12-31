@@ -50,6 +50,7 @@ export default {
 }
 .el-main {
   background-color: #e9eef3;
+  padding: 0;
 }
 .el-footer {
   background-color: #333744;

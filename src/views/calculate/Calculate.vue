@@ -1,24 +1,21 @@
 <template>
-  <div>
-    <el-timeline>
-      <el-timeline-item timestamp="2018/4/12" placement="top">
-        <el-card>
-          <h4>Update Github template</h4>
-          <p>Tom committed 2018/4/12 20:46</p>
-        </el-card>
-      </el-timeline-item>
-      <el-timeline-item timestamp="2018/4/3" placement="top">
-        <el-card>
-          <h4>Update Github template</h4>
-          <p>Tom committed 2018/4/3 20:46</p>
-        </el-card>
-      </el-timeline-item>
-      <el-timeline-item timestamp="2018/4/2" placement="top">
-        <el-card>
-          <h4>Update Github template</h4>
-          <p>Tom committed 2018/4/2 20:46</p>
-        </el-card>
-      </el-timeline-item>
-    </el-timeline>
+  <div class="chart-container">
+    <chart height="100%" width="100%" />
   </div>
 </template>
+
+<script>
+import Chart from '../../components/Charts/MixChart'
+export default {
+  components: { Chart }
+}
+</script>
+
+<style scoped>
+.chart-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+</style>

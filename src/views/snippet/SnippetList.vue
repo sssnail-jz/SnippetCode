@@ -139,6 +139,8 @@ export default {
 /*  */
 .el-row {
   height: 100%;
+  width: 100%;
+  margin: 20px;
 }
 .el-col {
   border-radius: 4px;
@@ -160,6 +162,7 @@ export default {
   width: 100%;
   height: 600px;
   margin-bottom: 10px;
+
   position: relative;
 }
 
