@@ -3,9 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './util/store'
 import './plugins/element.js'
+import './assets/alifont/iconfont.js'
 import './assets/css/global.css'
-import './assets/fonts/iconfont.css'
-import './icons'
+import './assets/alifont/iconfont.css'
 
 Vue.config.productionTip = false
 

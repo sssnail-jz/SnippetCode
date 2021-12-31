@@ -12,28 +12,53 @@
     >
       <el-submenu index="1">
         <template #title>
-          <i class="iconfont icon-user"></i>
+          <svg class="menuicon icon" aria-hidden="true">
+            <use xlink:href="#icon-tubiaozhizuomoban-"></use>
+          </svg>
           <span>Snippet</span>
         </template>
-        <el-menu-item index="/home/snippet-create">发布</el-menu-item>
+        <el-menu-item index="/home/snippet/create">发布</el-menu-item>
         <el-menu-item index="1-2">管理</el-menu-item>
       </el-submenu>
-      <el-menu-item index="2">
-        <i class="iconfont icon-baobiao"></i>
+      <el-menu-item index="/home/calculate">
+        <svg class="menuicon icon" aria-hidden="true">
+          <use xlink:href="#icon-zhexiantu"></use>
+        </svg>
         <span>统计</span>
       </el-menu-item>
       <el-menu-item index="3">
-        <i class="iconfont icon-users"></i>
+        <svg class="menuicon icon" aria-hidden="true">
+          <use xlink:href="#icon-quanzi"></use>
+        </svg>
         <span>圈子</span>
       </el-menu-item>
       <el-menu-item index="4">
-        <i class="iconfont icon-showpassword"></i>
+        <svg class="menuicon icon" aria-hidden="true">
+          <use xlink:href="#icon-shequpinglun"></use>
+        </svg>
         <span>社区</span>
       </el-menu-item>
     </el-menu>
     <el-main>
       <router-view></router-view>
     </el-main>
+    <svg
+      class="menuicon icon"
+      aria-hidden="true"
+      style="position: fixed; top: 50%; right: 20px; font-size: 60px"
+      @click="drawer = true"
+    >
+      <use xlink:href="#icon-bug"></use>
+    </svg>
+    <el-drawer
+      title="I am the title"
+      v-if="drawer"
+      :visible.sync="drawer"
+      :with-header="false"
+      :size="300"
+    >
+      <span>Hi there!</span>
+    </el-drawer>
   </el-container>
 </template>
 
@@ -42,7 +67,9 @@ import { mapState } from 'vuex'
 
 export default {
   data () {
-    return {}
+    return {
+      drawer: false
+    }
   },
   computed: {
     ...mapState(['isCollapse', 'menuStyleObject'])
@@ -73,8 +100,9 @@ export default {
   border: 0;
   overflow: hidden;
 }
-i {
-  margin-left: 2px;
-  margin-right: 5px;
+.menuicon {
+  font-size: 25px;
+  margin-left: -2px;
+  margin-right: 10px;
 }
 </style>

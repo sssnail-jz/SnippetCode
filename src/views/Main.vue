@@ -1,9 +1,14 @@
 <template>
   <el-container>
     <el-header>
-      <el-dropdown trigger="click">
-        <span @click="changeCollapse" class="el-dropdown-link"> menu</span>
-      </el-dropdown>
+      <svg
+        class="collapse-icon icon"
+        aria-hidden="true"
+        @click="changeCollapse"
+      >
+        <use :href="collapseIcon"></use>
+      </svg>
+      <svg-icon icon-class="404" />
     </el-header>
     <el-main>
       <router-view></router-view>
@@ -20,7 +25,10 @@ export default {
     return {}
   },
   computed: {
-    ...mapState(['isCollapse'])
+    ...mapState(['isCollapse']),
+    collapseIcon () {
+      return this.isCollapse ? '#icon-shouqi' : '#icon-zhankai'
+    }
   },
   methods: {
     changeCollapse: function () {
@@ -38,6 +46,7 @@ export default {
 .el-header {
   background-color: #373d41;
   height: 60px;
+  line-height: 60px;
 }
 .el-main {
   background-color: #e9eef3;
@@ -48,13 +57,7 @@ export default {
 }
 
 /*  */
-.el-dropdown {
-  color: white;
-  text-align: center;
-  line-height: 60px;
-  padding: 0;
-  margin: 0;
-  margin-left: 40px;
-  cursor: pointer;
+.collapse-icon {
+  font-size: 30px;
 }
 </style>

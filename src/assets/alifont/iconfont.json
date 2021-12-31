@@ -1,0 +1,58 @@
+{
+  "id": "3112440",
+  "name": "firstproj",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "3789493",
+      "name": "写作",
+      "font_class": "tubiaozhizuomoban-",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "3860857",
+      "name": "折线图",
+      "font_class": "zhexiantu",
+      "unicode": "e685",
+      "unicode_decimal": 59013
+    },
+    {
+      "icon_id": "6166281",
+      "name": "展开",
+      "font_class": "zhankai",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    },
+    {
+      "icon_id": "6166282",
+      "name": "收起",
+      "font_class": "shouqi",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "24111661",
+      "name": "圈子",
+      "font_class": "quanzi",
+      "unicode": "fb35",
+      "unicode_decimal": 64309
+    },
+    {
+      "icon_id": "26313786",
+      "name": "社区评论",
+      "font_class": "shequpinglun",
+      "unicode": "ffc2",
+      "unicode_decimal": 65474
+    },
+    {
+      "icon_id": "1227691",
+      "name": "bug",
+      "font_class": "bug",
+      "unicode": "e70c",
+      "unicode_decimal": 59148
+    }
+  ]
+}
