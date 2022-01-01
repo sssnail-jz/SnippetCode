@@ -6,6 +6,48 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "2170581",
+      "name": "代码",
+      "font_class": "daima",
+      "unicode": "e702",
+      "unicode_decimal": 59138
+    },
+    {
+      "icon_id": "5441008",
+      "name": "用户",
+      "font_class": "yonghu",
+      "unicode": "e6f1",
+      "unicode_decimal": 59121
+    },
+    {
+      "icon_id": "5732984",
+      "name": "点赞、赞",
+      "font_class": "dianzan",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "13409716",
+      "name": "代码",
+      "font_class": "daima1",
+      "unicode": "e64f",
+      "unicode_decimal": 58959
+    },
+    {
+      "icon_id": "15601902",
+      "name": "日期",
+      "font_class": "riqi",
+      "unicode": "e6af",
+      "unicode_decimal": 59055
+    },
+    {
+      "icon_id": "21816039",
+      "name": "评论",
+      "font_class": "pinglun",
+      "unicode": "f5b0",
+      "unicode_decimal": 62896
+    },
+    {
       "icon_id": "2115119",
       "name": "我管理的",
       "font_class": "woguanlide",

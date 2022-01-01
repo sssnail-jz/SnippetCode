@@ -2,17 +2,23 @@
   {
       "id": "@id(10,15)",
       "title": "@title(3, 5)",
-      "content": "@sentence(1000)",
+      "content": "@sentence(200)",
       "cover": "@image('150x120','#02adea','Hello')",
-      "author": "@ctitle(2, 3)",
-      "publishDate": "@datetime()"
+      "author": "@sentence(1)",
+      "publishDate": "@datetime()",
+      "like": "@integer(0, 100)",
+      "type": "@sentence(1)",
+      "comment": "@integer(0, 100)"
   },
   {
     "id": "@id(10,15)",
     "title": "@title(3, 5)",
-    "content": "@sentence(1000)",
+    "content": "@sentence(200)",
     "cover": "@image('150x120','#02adea','Hello')",
-    "author": "@title(2, 3)",
-    "publishDate": "@datetime()"
+    "author": "@sentence(1)",
+    "publishDate": "@datetime()",
+    "like": "@integer(0, 100)",
+    "type": "@sentence(1)",
+    "comment": "@integer(0, 100)"
   }
 ]

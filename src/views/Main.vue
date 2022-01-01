@@ -8,7 +8,6 @@
       >
         <use :href="collapseIcon"></use>
       </svg>
-      <svg-icon icon-class="404" />
     </el-header>
     <el-main>
       <router-view></router-view>
