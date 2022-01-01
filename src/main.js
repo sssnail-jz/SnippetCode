@@ -7,6 +7,8 @@ import './assets/alifont/iconfont.js'
 import './assets/css/global.css'
 import './assets/alifont/iconfont.css'
 
+import '@/styles/btn.scss' // global css
+
 Vue.config.productionTip = false
 
 new Vue({

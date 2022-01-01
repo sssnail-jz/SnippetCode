@@ -17,7 +17,7 @@
           </svg>
           <span>Snippet</span>
         </template>
-        <el-menu-item index="/home/snippet/create">
+        <el-menu-item index="/home/snippet-create">
           <svg class="menu-item-icon icon" aria-hidden="true">
             <use xlink:href="#icon-fabu"></use>
           </svg>
@@ -152,6 +152,9 @@ export default {
   border: 0;
   overflow: hidden;
 }
+.el-menu-item {
+  padding: 0;
+}
 .menu-icon {
   font-size: 25px;
   margin-left: -2px;
@@ -160,7 +163,7 @@ export default {
 }
 .menu-item-icon {
   font-size: 20px;
-  margin-left: -2px;
+  margin-left: -10px;
   margin-right: 10px;
   margin-bottom: -2px;
 }
