@@ -16,89 +16,30 @@
               :text="item.title"
             />
             <el-divider content-position="left">
-              <svg class="icon" aria-hidden="true" @click="drawer = true">
-                <use xlink:href="#icon-riqi"></use>
-              </svg>
-              <el-link
-                class="pan-btn"
-                style="
-                  padding-left: 5px;
-                  padding-right: 5px;
-                  padding-top: 0;
-                  padding-bottom: 0;
-                "
-                >{{ item.publishDate }}</el-link
-              >
+              <snippet-svg icon="#icon-riqi"></snippet-svg>
+              <el-link class="pan-btn el-link-content-header">{{
+                item.publishDate
+              }}</el-link>
 
-              <svg
-                class="content-header-icon icon"
-                aria-hidden="true"
-                @click="drawer = true"
-              >
-                <use xlink:href="#icon-yonghu"></use>
-              </svg>
-              <el-link
-                class="pan-btn"
-                style="
-                  padding-left: 5px;
-                  padding-right: 5px;
-                  padding-top: 0;
-                  padding-bottom: 0;
-                "
-                >{{ item.author }}</el-link
-              >
-              <svg
-                class="content-header-icon icon"
-                aria-hidden="true"
-                @click="drawer = true"
-              >
-                <use xlink:href="#icon-daima1"></use>
-              </svg>
-              <el-link
-                class="pan-btn"
-                style="
-                  padding-left: 5px;
-                  padding-right: 5px;
-                  padding-top: 0;
-                  padding-bottom: 0;
-                "
-                >{{ item.type }}</el-link
-              >
+              <snippet-svg icon="#icon-yonghu"></snippet-svg>
+              <el-link class="pan-btn el-link-content-header">{{
+                item.author
+              }}</el-link>
 
-              <svg
-                class="content-header-icon icon"
-                aria-hidden="true"
-                @click="drawer = true"
-              >
-                <use xlink:href="#icon-dianzan"></use>
-              </svg>
-              <el-link
-                class="pan-btn"
-                style="
-                  padding-left: 5px;
-                  padding-right: 5px;
-                  padding-top: 0;
-                  padding-bottom: 0;
-                "
-                >{{ item.like }}</el-link
-              >
-              <svg
-                class="content-header-icon icon"
-                aria-hidden="true"
-                @click="drawer = true"
-              >
-                <use xlink:href="#icon-pinglun"></use>
-              </svg>
-              <el-link
-                class="pan-btn"
-                style="
-                  padding-left: 5px;
-                  padding-right: 5px;
-                  padding-top: 0;
-                  padding-bottom: 0;
-                "
-                >{{ item.comment }}</el-link
-              >
+              <snippet-svg icon="#icon-daima1"></snippet-svg>
+              <el-link class="pan-btn el-link-content-header">{{
+                item.type
+              }}</el-link>
+
+              <snippet-svg icon="#icon-dianzan"></snippet-svg>
+              <el-link class="pan-btn el-link-content-header">{{
+                item.like
+              }}</el-link>
+
+              <snippet-svg icon="#icon-pinglun"></snippet-svg>
+              <el-link class="pan-btn el-link-content-header">{{
+                item.comment
+              }}</el-link>
             </el-divider>
           </div>
 
@@ -137,24 +78,14 @@
                     </pan-thumb>
                   </el-link>
 
-                  <el-link
-                    class="pan-btn"
-                    style="
-                      padding-left: 5px;
-                      padding-right: 5px;
-                      padding-top: 0;
-                      padding-bottom: 0;
-                    "
-                  >
+                  <el-link class="pan-btn el-link-content-header">
                     {{ item.name }}
-                    <svg
-                      class="content-header-icon icon"
-                      aria-hidden="true"
-                      @click="drawer = true"
+
+                    <snippet-svg
                       style="margin-right: 5px"
-                    >
-                      <use xlink:href="#icon-pinglun"></use></svg
-                    >{{ item.snippetCount }}</el-link
+                      icon="#icon-pinglun"
+                    ></snippet-svg>
+                    {{ item.snippetCount }}</el-link
                   >
                 </div>
               </li>
@@ -294,5 +225,12 @@ export default {
     rgba(255, 255, 255, 0),
     rgba(255, 255, 255, 1)
   );
+}
+
+.el-link-content-header {
+  padding-left: 5px;
+  padding-right: 10px;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 </style>

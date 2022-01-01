@@ -9,6 +9,9 @@ import './assets/alifont/iconfont.css'
 
 import '@/styles/btn.scss' // global css
 
+import SnippetSvg from './components/SnippetSvg' // svg 图标
+
+Vue.component('snippet-svg', SnippetSvg)
 Vue.config.productionTip = false
 
 new Vue({

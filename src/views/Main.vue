@@ -1,13 +1,11 @@
 <template>
   <el-container>
     <el-header>
-      <svg
-        class="collapse-icon icon"
-        aria-hidden="true"
+      <snippet-svg
+        class="collapse-icon"
         @click="changeCollapse"
-      >
-        <use :href="collapseIcon"></use>
-      </svg>
+        :icon="collapseIcon"
+      ></snippet-svg>
     </el-header>
     <el-main>
       <router-view></router-view>

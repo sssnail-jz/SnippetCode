@@ -12,60 +12,48 @@
     >
       <el-submenu index="1">
         <template #title>
-          <svg class="menu-icon icon" aria-hidden="true">
-            <use xlink:href="#icon-tubiaozhizuomoban-"></use>
-          </svg>
+          <snippet-svg
+            class="menu-icon"
+            icon="#icon-tubiaozhizuomoban-"
+          ></snippet-svg>
           <span>Snippet</span>
         </template>
         <el-menu-item index="/home/snippet-create">
-          <svg class="menu-item-icon icon" aria-hidden="true">
-            <use xlink:href="#icon-fabu"></use>
-          </svg>
+          <snippet-svg class="menu-icon" icon="#icon-fabu"></snippet-svg>
           <span>发布</span>
         </el-menu-item>
         <el-menu-item index="1-2">
-          <svg class="menu-item-icon icon" aria-hidden="true">
-            <use xlink:href="#icon-woguanlide"></use>
-          </svg>
+          <snippet-svg class="menu-icon" icon="#icon-woguanlide"></snippet-svg>
           <span>管理</span></el-menu-item
         >
       </el-submenu>
       <el-menu-item index="/home/count">
-        <svg class="menu-icon icon" aria-hidden="true">
-          <use xlink:href="#icon-zhexiantu"></use>
-        </svg>
+        <snippet-svg class="menu-icon" icon="#icon-zhexiantu"></snippet-svg>
         <span>数据</span>
       </el-menu-item>
       <el-menu-item index="/home/calculate">
-        <svg class="menu-icon icon" aria-hidden="true">
-          <use xlink:href="#icon-tongji"></use>
-        </svg>
+        <snippet-svg class="menu-icon" icon="#icon-tongji"></snippet-svg>
         <span>统计</span>
       </el-menu-item>
       <el-menu-item index="3">
-        <svg class="menu-icon icon" aria-hidden="true">
-          <use xlink:href="#icon-quanzi"></use>
-        </svg>
+        <snippet-svg class="menu-icon" icon="#icon-quanzi"></snippet-svg>
         <span>圈子</span>
       </el-menu-item>
       <el-menu-item index="4">
-        <svg class="menu-icon icon" aria-hidden="true">
-          <use xlink:href="#icon-shequpinglun"></use>
-        </svg>
+        <snippet-svg class="menu-icon" icon="#icon-shequpinglun"></snippet-svg>
         <span>社区</span>
       </el-menu-item>
     </el-menu>
     <el-main>
       <router-view></router-view>
     </el-main>
-    <svg
-      class="menu-icon icon"
-      aria-hidden="true"
+    <snippet-svg
+      class="menu-icon"
       style="position: fixed; top: 50%; right: 20px; font-size: 60px"
       @click="drawer = true"
-    >
-      <use xlink:href="#icon-bug"></use>
-    </svg>
+      icon="#icon-bug"
+    ></snippet-svg>
+
     <el-drawer
       title="I am the title"
       v-if="drawer"
