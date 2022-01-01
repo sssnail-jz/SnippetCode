@@ -2,7 +2,7 @@
   {
       "id": "@id(10,15)",
       "title": "@ctitle(9, 15)",
-      "content": ".content-div {padding-left: 20px;}",
+      "content": "$menuText:#bfcbd9;$menuActiveText:#409EFF;$subMenuActiveText:#f4f4f5;",
       "cover": "@image('150x120','#02adea','Hello')",
       "author": "@sentence(1)",
       "publishDate": "@datetime()",

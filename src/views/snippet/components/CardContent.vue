@@ -41,8 +41,8 @@
       </div>
 
       <div class="text item content-div line-numbers">
-        <pre class="language-css"><code>
-          {{item.content}}
+        <pre class="language-scss"><code>
+          {{ content }}
         </code></pre>
         <div class="more-div"></div>
       </div>
@@ -62,6 +62,20 @@ export default {
   data () {
     return {
       snippetList: [],
+      content: `// base color
+                $blue:#324157;
+                $light-blue:#3A71A8;
+                $red:#C03639;
+                $pink: #E65D6E;
+                $green: #30B08F;
+                $tiffany: #4AB7BD;
+                $yellow:#FEC171;
+                $panGreen: #30B08F;
+
+                // sidebar
+                $menuText:#bfcbd9;
+                $menuActiveText:#409EFF;
+                $subMenuActiveText:#f4f4f5;`,
       xxxxxxxxxxtimer: undefined // 打这么多 x 只是为了记录我踩这个坑踩得多痛苦
     }
   },
