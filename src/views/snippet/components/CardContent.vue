@@ -40,13 +40,10 @@
         </el-divider>
       </div>
 
-      <div class="text item content-div">
-        <el-image
-          style="align: right; float: right; hspace: 15px; vspace: 15px"
-          :src="item.cover"
-          :fit="fit"
-        ></el-image>
-        {{ item.content }}
+      <div class="text item content-div line-numbers">
+        <pre class="language-css"><code>
+          {{item.content}}
+        </code></pre>
         <div class="more-div"></div>
       </div>
     </el-card>
@@ -56,7 +53,7 @@
 <script>
 import axios from 'axios'
 import Mallki from '@/components/TextHoverEffect/Mallki'
-
+import Prism from '@/assets/hightlight/prism.js'
 export default {
   name: 'SnippetContent',
   components: {
@@ -64,9 +61,11 @@ export default {
   },
   data () {
     return {
-      snippetList: []
+      snippetList: [],
+      xxxxxxxxxxtimer: undefined // 打这么多 x 只是为了记录我踩这个坑踩得多痛苦
     }
   },
+
   created () {
     axios
       .get('/snippet/snippet-list')
@@ -76,6 +75,9 @@ export default {
       .catch((err) => {
         console.error(err)
       })
+    this.xxxxxxxxxxtimer = setInterval(() => {
+      Prism.highlightAll() // 代码高亮渲染函数
+    }, 0)
   }
 }
 </script>
@@ -120,5 +122,8 @@ export default {
   padding-right: 10px;
   padding-top: 0;
   padding-bottom: 0;
+}
+snippet-svg {
+  font-size: 20px;
 }
 </style>

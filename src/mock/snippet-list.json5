@@ -1,8 +1,8 @@
 [
   {
       "id": "@id(10,15)",
-      "title": "@title(3, 5)",
-      "content": "@sentence(200)",
+      "title": "@ctitle(9, 15)",
+      "content": ".content-div {padding-left: 20px;}",
       "cover": "@image('150x120','#02adea','Hello')",
       "author": "@sentence(1)",
       "publishDate": "@datetime()",
@@ -12,7 +12,7 @@
   },
   {
     "id": "@id(10,15)",
-    "title": "@title(3, 5)",
+    "title": "@ctitle(8, 13)",
     "content": "@sentence(200)",
     "cover": "@image('150x120','#02adea','Hello')",
     "author": "@sentence(1)",

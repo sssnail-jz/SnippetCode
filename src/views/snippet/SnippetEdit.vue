@@ -2,7 +2,6 @@
   <el-card class="box-card-aside">
     <el-form ref="postForm">
       <sticky style="z-index: 100; position: fixed; top: 70px; right: 25px">
-        <CommentDropdown v-model="postForm.comment_disabled" />
         <el-link class="pan-btn green-btn">提交</el-link>
         <el-link class="pan-btn yellow-btn">草稿</el-link>
       </sticky>
@@ -38,7 +37,6 @@ import Tinymce from '@/components/Tinymce'
 import MdInput from '@/components/MDinput'
 import Upload from '@/components/Upload/SingleImage3'
 import Sticky from '@/components/Sticky' // 粘性header组件
-import { CommentDropdown } from './Dropdown'
 
 const defaultForm = {
   title: '',
@@ -54,8 +52,7 @@ export default {
     Tinymce,
     MdInput,
     Upload,
-    Sticky,
-    CommentDropdown
+    Sticky
   },
   data () {
     return {
