@@ -44,7 +44,10 @@
         <pre class="language-scss"><code>
           {{ content }}
         </code></pre>
-        <div class="more-div"></div>
+        <div class="more-div" style="relative"></div>
+      </div>
+      <div class="a-more-wraper">
+        <a class="a-more"> [More] </a>
       </div>
     </el-card>
   </div>
@@ -75,7 +78,19 @@ export default {
                 // sidebar
                 $menuText:#bfcbd9;
                 $menuActiveText:#409EFF;
-                $subMenuActiveText:#f4f4f5;`,
+                $subMenuActiveText:#f4f4f5;
+                
+                :export {
+                  menuText: $menuText;
+                  menuActiveText: $menuActiveText;
+                  subMenuActiveText: $subMenuActiveText;
+                  menuBg: $menuBg;
+                  menuHover: $menuHover;
+                  subMenuBg: $subMenuBg;
+                  subMenuHover: $subMenuHover;
+                  sideBarWidth: $sideBarWidth;
+                }
+                `,
       xxxxxxxxxxtimer: undefined // 打这么多 x 只是为了记录我踩这个坑踩得多痛苦
     }
   },
@@ -108,15 +123,15 @@ export default {
   width: 100%;
   height: 600px;
   margin-bottom: 10px;
-
+  overflow: hidden;
   position: relative;
 }
 /*  */
 .content-div {
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 10px;
-  height: 500px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  height: 480px;
   overflow: hidden;
   position: relative;
 }
@@ -137,7 +152,16 @@ export default {
   padding-top: 0;
   padding-bottom: 0;
 }
-snippet-svg {
-  font-size: 20px;
+
+.a-more-wraper {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: 5px;
+}
+.a-more {
+  font-size: 22px;
+  color: red;
+  cursor: pointer;
 }
 </style>
