@@ -1,9 +1,10 @@
 <template>
   <div>
     <!-- snippet-list card -->
+
     <el-card
       class="box-card-content"
-      :key="item.title"
+      :key="item.id"
       v-for="item in snippetList"
     >
       <div class="header">
@@ -46,9 +47,9 @@
         </code></pre>
         <div class="more-div" style="relative"></div>
       </div>
-      <div class="a-more-wraper">
+      <!-- <div class="a-more-wraper">
         <a class="a-more"> [More] </a>
-      </div>
+      </div> -->
     </el-card>
   </div>
 </template>
@@ -106,7 +107,7 @@ export default {
         console.error(err)
       })
     this.timer = setInterval(() => {
-      Prism.highlightAll() // 代码高亮渲染函数
+      Prism.highlightAll()
     }, 0)
   }
 }
@@ -154,7 +155,7 @@ export default {
   padding-bottom: 0;
 }
 
-.a-more-wraper {
+/* .a-more-wraper {
   position: absolute;
   width: 100%;
   text-align: center;
@@ -164,7 +165,7 @@ export default {
   font-size: 22px;
   color: red;
   cursor: pointer;
-}
+} */
 .el-divider--horizontal {
   height: 2px;
 }

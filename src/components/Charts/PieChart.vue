@@ -49,16 +49,16 @@ export default {
             radius: [15, this.hight],
             center: ['50%', '38%'],
             data: [
-              { value: 320, name: 'Industries' },
+              { value: 150, name: 'Industries' },
               { value: 240, name: 'Technology' },
               { value: 149, name: 'Forex' },
               { value: 100, name: 'Gold' },
-              { value: 59, name: 'Forecasts' }
+              { value: 320, name: 'Forecasts' }
             ],
             animationEasing: 'cubicInOut',
             animationDuration: 2600,
             label: {
-              show: true
+              show: false
             }
           }
         ]

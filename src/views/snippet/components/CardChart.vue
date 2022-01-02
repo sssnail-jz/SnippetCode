@@ -6,7 +6,7 @@
 
     <el-card class="box-card-aside" style="border-radius: 0">
       <div class="text item" style="height: 300px">
-        <pie-chart :hight="85" />
+        <pie-chart :hight="100" />
       </div>
     </el-card>
   </el-card>
@@ -33,5 +33,8 @@ export default {
   padding-right: 10px;
   padding-top: 0;
   padding-bottom: 0;
+}
+.el-card__body {
+  padding: 0 !important;
 }
 </style>
