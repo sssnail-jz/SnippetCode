@@ -1,8 +1,9 @@
 <template>
   <div>
     <!-- tag cloud -->
-    <el-card class="box-card-aside">
+    <el-card class="box-card-aside" shadow="nerver" style="border: 0">
       <el-divider content-position="right">标签云</el-divider>
+      <el-card class="box-card-aside" style="border-radius: 0">
       <div class="text item">
         <el-link
           :key="item.title"
@@ -14,6 +15,7 @@
           {{ item.title }}
         </el-link>
       </div>
+      </el-card>
     </el-card>
   </div>
 </template>

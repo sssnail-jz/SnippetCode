@@ -1,39 +1,41 @@
 <template>
   <div>
     <!-- user-list card -->
-    <el-card class="box-card-aside">
+    <el-card class="box-card-aside" shadow="nerver" style="border: 0">
       <el-divider content-position="right">用户列表</el-divider>
-      <div class="text item">
-        <ul>
-          <li
-            :key="item.id"
-            v-for="item in userList"
-            style="display: flex; align-items: center; margin-bottom: 10px"
-          >
-            <div>
-              <el-link :underline="false">
-                <pan-thumb
-                  width="45px"
-                  height="45px"
-                  :image="item.avatar"
-                  style="margin-right: 10px"
+      <el-card class="box-card-aside" style="border-radius: 0">
+        <div class="text item">
+          <ul>
+            <li
+              :key="item.id"
+              v-for="item in userList"
+              style="display: flex; align-items: center; margin-bottom: 10px"
+            >
+              <div>
+                <el-link :underline="false">
+                  <pan-thumb
+                    width="45px"
+                    height="45px"
+                    :image="item.avatar"
+                    style="margin-right: 10px"
+                  >
+                  </pan-thumb>
+                </el-link>
+
+                <el-link class="pan-btn el-link-content-header">
+                  {{ item.name }}
+
+                  <snippet-svg
+                    style="margin-right: 5px"
+                    icon="#icon-pinglun"
+                  ></snippet-svg>
+                  {{ item.snippetCount }}</el-link
                 >
-                </pan-thumb>
-              </el-link>
-
-              <el-link class="pan-btn el-link-content-header">
-                {{ item.name }}
-
-                <snippet-svg
-                  style="margin-right: 5px"
-                  icon="#icon-pinglun"
-                ></snippet-svg>
-                {{ item.snippetCount }}</el-link
-              >
-            </div>
-          </li>
-        </ul>
-      </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </el-card>
     </el-card>
   </div>
 </template>
