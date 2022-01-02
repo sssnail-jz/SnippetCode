@@ -41,7 +41,7 @@ export default {
 }
 .el-col {
   border-radius: 4px;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
 }
 .grid-content {
   border-radius: 4px;

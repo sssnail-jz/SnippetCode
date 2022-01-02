@@ -14,16 +14,26 @@
         <Tinymce :height="400" />
       </el-form-item>
       <el-form-item>
-        <span>类型：</span>
-        <el-select v-model="value1" multiple placeholder="可多选">
+        <span class="span-label">类型：</span>
+        <el-drag-select
+          v-model="value"
+          style="width: 500px"
+          multiple
+          placeholder="请选择"
+        >
           <el-option
             v-for="item in options"
             :key="item.value"
             :label="item.label"
             :value="item.value"
-          >
-          </el-option>
-        </el-select>
+          />
+        </el-drag-select>
+
+        <div style="margin-top: 30px; margin-left: 70px">
+          <el-tag v-for="item of value" :key="item" style="margin-right: 15px">
+            {{ item }}
+          </el-tag>
+        </div>
       </el-form-item>
       <el-form-item>
         <Upload />
@@ -37,6 +47,7 @@ import Tinymce from '@/components/Tinymce'
 import MdInput from '@/components/MDinput'
 import Upload from '@/components/Upload/SingleImage3'
 import Sticky from '@/components/Sticky' // 粘性header组件
+import ElDragSelect from '@/components/DragSelect'
 
 const defaultForm = {
   title: '',
@@ -52,32 +63,33 @@ export default {
     Tinymce,
     MdInput,
     Upload,
-    Sticky
+    Sticky,
+    ElDragSelect
   },
   data () {
     return {
       postForm: defaultForm,
-      value1: [],
+      value: ['Apple', 'Banana', 'Orange'],
       options: [
         {
-          value: 'Option1',
-          label: 'Option1'
+          value: 'Apple',
+          label: 'Apple'
         },
         {
-          value: 'Option2',
-          label: 'Option2'
+          value: 'Banana',
+          label: 'Banana'
         },
         {
-          value: 'Option3',
-          label: 'Option3'
+          value: 'Orange',
+          label: 'Orange'
         },
         {
-          value: 'Option4',
-          label: 'Option4'
+          value: 'Pear',
+          label: 'Pear'
         },
         {
-          value: 'Option5',
-          label: 'Option5'
+          value: 'Strawberry',
+          label: 'Strawberry'
         }
       ]
     }
@@ -97,15 +109,13 @@ export default {
 .el-link {
   margin-left: 10px;
 }
-.el-form-item span {
-  text-align: right;
+.span-label {
+  width: 70px;
+  display: inline-block;
+  text-align: left;
   vertical-align: middle;
-  float: left;
   font-size: 16px;
   color: #606266;
   line-height: 40px;
-  padding: 0 12px 0 0;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
 }
 </style>
