@@ -2,9 +2,9 @@
   <div>
     <!-- snippet-list card -->
     <el-card
-      :key="item.id"
-      v-for="item in snippetList"
       class="box-card-content"
+      :key="item.title"
+      v-for="item in snippetList"
     >
       <div class="header">
         <mallki
@@ -57,6 +57,7 @@
 import axios from 'axios'
 import Mallki from '@/components/TextHoverEffect/Mallki'
 import Prism from '@/assets/hightlight/prism.js'
+
 export default {
   name: 'SnippetContent',
   components: {
@@ -91,10 +92,10 @@ export default {
                   sideBarWidth: $sideBarWidth;
                 }
                 `,
-      xxxxxxxxxxtimer: undefined // 打这么多 x 只是为了记录我踩这个坑踩得多痛苦
+      timer: undefined
     }
   },
-
+  computed: {},
   created () {
     axios
       .get('/snippet/snippet-list')
@@ -104,7 +105,7 @@ export default {
       .catch((err) => {
         console.error(err)
       })
-    this.xxxxxxxxxxtimer = setInterval(() => {
+    this.timer = setInterval(() => {
       Prism.highlightAll() // 代码高亮渲染函数
     }, 0)
   }
@@ -163,5 +164,8 @@ export default {
   font-size: 22px;
   color: red;
   cursor: pointer;
+}
+.el-divider--horizontal {
+  height: 2px;
 }
 </style>

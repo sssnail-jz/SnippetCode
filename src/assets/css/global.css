@@ -18,3 +18,7 @@ ul {
   fill: currentColor;
   overflow: hidden;
 }
+
+.el-card {
+  border: 0;
+}

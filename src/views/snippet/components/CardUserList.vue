@@ -1,8 +1,9 @@
 <template>
-  <div>
-    <!-- user-list card -->
-    <el-card class="box-card-aside" shadow="nerver" style="border: 0">
-      <el-divider content-position="right">用户列表</el-divider>
+  <!-- user-list card -->
+
+  <el-card class="box-card-aside" shadow="nerver" style="border: 0">
+    <el-divider content-position="right">用户列表</el-divider>
+    <snippet-animated-card>
       <el-card class="box-card-aside" style="border-radius: 0">
         <div class="text item">
           <ul>
@@ -36,18 +37,20 @@
           </ul>
         </div>
       </el-card>
-    </el-card>
-  </div>
+    </snippet-animated-card>
+  </el-card>
 </template>
 
 <script>
 import axios from 'axios'
 import PanThumb from '@/components/PanThumb'
+import SnippetAnimatedCard from '@/components/SnippetAnimatedCard'
 
 export default {
   name: 'SnippetUserList',
   components: {
-    PanThumb
+    PanThumb,
+    SnippetAnimatedCard
   },
   data () {
     return {

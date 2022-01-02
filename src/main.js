@@ -6,9 +6,7 @@ import '@/plugins/element.js'
 import '@/assets/alifont/iconfont.js'
 import '@/assets/css/global.css'
 import '@/assets/alifont/iconfont.css'
-
 import '@/styles/btn.scss' // global css
-
 import '@/assets/hightlight/prism.css'
 
 import SnippetSvg from './components/SnippetSvg' // svg 图标
