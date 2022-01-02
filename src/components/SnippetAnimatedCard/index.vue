@@ -1,12 +1,19 @@
 <template>
-  <div class="wraper" @mousemove="cardMousemove" @mouseleave="cardMouseLeave">
-    <slot />
+  <div class="wraper" @mousemove="Mousemove" @mouseleave="MouseLeave">
+    <div ref="inner"><slot /></div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'SnippetAnimatedCard',
+  props: {
+    scale: {
+      type: Number,
+      required: false,
+      default: 0.00015
+    }
+  },
   methods: {
     cumulativeOffset (element) {
       var top = 0
@@ -16,30 +23,37 @@ export default {
         left += element.offsetLeft || 0
         element = element.offsetParent
       } while (element)
+      // console.log('top:' + top)
+      // console.log('left:' + left)
       return {
         top: top,
         left: left
       }
     },
-    cardMousemove (e) {
+    generateTranslate (elInner, el, value) {
+      elInner.style.transform =
+        'translate(' + el.clientX * value + 'px, ' + el.clientY * value + 'px)'
+    },
+    Mousemove (e) {
       var el = e.currentTarget
+      console.log('e.pageX: ' + e.pageX)
+      console.log('e.pageY: ' + e.pageY)
       var x = ((e.pageX - this.cumulativeOffset(el).left - 350 / 2) * -1) / 100
       var y = ((e.pageY - this.cumulativeOffset(el).top - 350 / 2) * -1) / 100
-      console.log('x:' + x)
-      console.log('y:' + y)
+
       var matrix = [
-        [1, 0, 0, -x * 0.00015],
-        [0, 1, 0, -y * 0.00015],
+        [1, 0, 0, -x * this.scale],
+        [0, 1, 0, -y * this.scale],
         [0, 0, 1, 1],
         [0, 0, 0, 1]
       ]
-
-      // generateTranslate($year, e, 0.03)
-      // generateTranslate($cardComet, e, 0.05)
+      // inner el animation
+      // var elInner = this.$refs.inner
+      // this.generateTranslate(elInner, el, 0.05)
 
       el.style.transform = 'matrix3d(' + matrix.toString() + ')'
     },
-    cardMouseLeave (e) {
+    MouseLeave (e) {
       e.currentTarget.style.transform = 'none'
     }
   }
@@ -50,6 +64,6 @@ export default {
 .wraper {
   padding: 0;
   margin: 0;
-  transition: all 0.2s ease;
+  transition: all 0.1s ease;
 }
 </style>
