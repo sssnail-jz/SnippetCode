@@ -8,7 +8,9 @@
       ></snippet-svg>
     </el-header>
     <el-main>
-      <router-view></router-view>
+      <overlay-scrollbars ref="osComponentRef" style="height: 100%">
+        <router-view></router-view>
+      </overlay-scrollbars>
     </el-main>
     <el-footer></el-footer>
   </el-container>
