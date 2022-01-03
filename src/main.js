@@ -13,12 +13,14 @@ import 'overlayscrollbars/css/OverlayScrollbars.css'
 import OverlayScrollbars from 'overlayscrollbars'
 import { OverlayScrollbarsPlugin } from 'overlayscrollbars-vue'
 
-import SnippetSvg from './components/SnippetSvg' // svg 图标
+import SnippetSvg from '@/components/SnippetSvg' // svg 图标
+import SnippetComments from '@/components/SnippetComments'
 
 Vue.component('snippet-svg', SnippetSvg)
 
 Vue.use(OverlayScrollbarsPlugin)
 Vue.use(OverlayScrollbars)
+Vue.use(SnippetComments)
 
 Vue.config.productionTip = false
 

@@ -11,6 +11,27 @@
           {{ content }}
         </code></pre>
         <el-divider> </el-divider>
+        <comments-item
+          v-for="comment in comments"
+          :key="comment.id"
+          :avatar="comment.headimg"
+          :author="comment.author"
+          :content="comment.content"
+          :time="comment.createTime"
+          :hasReply="replys[comment.id] && replys[comment.id].length > 0"
+          @clickAvatar="handleClickAvatar(comment)"
+          @clickAuthor="handleClickAuthor(comment)"
+          @addReply="handleAddReply(comment)"
+        >
+          <reply-item
+            v-for="reply in replys[comment.id]"
+            :key="reply.id"
+            :author="reply.author"
+            :content="reply.content"
+            :time="reply.createTime"
+          >
+          </reply-item>
+        </comments-item>
       </el-card>
     </el-col>
     <!-- aside -->
@@ -26,12 +47,33 @@
 <script>
 import Prism from '@/assets/hightlight/prism.js'
 import CardUserProfile from './components/CardUserProfile.vue'
+
 export default {
   components: {
     CardUserProfile
   },
   data () {
     return {
+      comments: [
+        {
+          id: 0,
+          avatar: null,
+          author: 'jack',
+          content: 'contenttt',
+          createTime: 12345
+        }
+      ],
+      replys: [
+        [
+          {
+            id: 100,
+            avator: null,
+            author: 'hai',
+            content: 'haiii',
+            createTime: 123456
+          }
+        ]
+      ],
       content: `// base color
                 $blue:#324157;
                 $light-blue:#3A71A8;
@@ -64,6 +106,11 @@ export default {
     setInterval(() => {
       Prism.highlightAll()
     }, 0)
+  },
+  methods: {
+    handleAddReply (comment) {
+      this.replys[comment.id].push(comment)
+    }
   }
 }
 </script>
