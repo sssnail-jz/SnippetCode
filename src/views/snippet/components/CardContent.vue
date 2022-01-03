@@ -92,8 +92,7 @@ export default {
                   subMenuHover: $subMenuHover;
                   sideBarWidth: $sideBarWidth;
                 }
-                `,
-      timer: undefined
+                `
     }
   },
   computed: {},
@@ -106,7 +105,7 @@ export default {
       .catch((err) => {
         console.error(err)
       })
-    this.timer = setInterval(() => {
+    setInterval(() => {
       Prism.highlightAll()
     }, 0)
   }

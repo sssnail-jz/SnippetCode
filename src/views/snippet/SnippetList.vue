@@ -10,9 +10,10 @@
       ><div class="grid-content"></div
     ></el-col>
     <el-col :xs="23" :md="13" :lg="13" :xl="13" class="col-content">
-      <!-- snippet-list 列表组件 -->
+      <!-- content 列表组件 -->
       <card-content />
     </el-col>
+    <!-- aside -->
     <el-col :xs="0" :md="6" :lg="6" :xl="6" class="col-aside">
       <!-- 图标统计组件 -->
       <card-chart class="hidden-md-and-down" />

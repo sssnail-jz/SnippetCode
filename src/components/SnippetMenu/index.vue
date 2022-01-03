@@ -21,7 +21,7 @@
         <snippet-svg class="menu-icon" icon="#icon-fabu"></snippet-svg>
         <span>发布</span>
       </el-menu-item>
-      <el-menu-item index="1-2">
+      <el-menu-item index="/home/snippet-show">
         <snippet-svg class="menu-icon" icon="#icon-woguanlide"></snippet-svg>
         <span>管理</span></el-menu-item
       >
