@@ -13,7 +13,7 @@
           style="font-size: 20px"
           :text="item.title"
         />
-        <el-divider content-position="left">
+        <el-divider content-position="left" class="hidden-sm-and-down">
           <snippet-svg icon="#icon-riqi"></snippet-svg>
           <el-link class="pan-btn el-link-content-header">{{
             item.publishDate

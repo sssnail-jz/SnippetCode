@@ -1,19 +1,29 @@
 <template>
-  <el-row class="row-bg" justify="center" :gutter="20">
-    <el-col :span="2"><div class="grid-content"></div></el-col>
-    <el-col :span="14">
+  <!--
+  关于响应式：
+  1，:sm 好像有问题，:sm 会影响 :lg?
+  2，middle的时候只隐藏chart
+  3，small、xsmall 会隐藏右侧只留左侧
+  -->
+  <el-row class="row-bg">
+    <el-col :xs="0" :md="2" :lg="2" :xl="2"
+      ><div class="grid-content"></div
+    ></el-col>
+    <el-col :xs="23" :md="13" :lg="13" :xl="13" class="col-content">
       <!-- snippet-list 列表组件 -->
       <card-content />
     </el-col>
-    <el-col :span="6">
+    <el-col :xs="0" :md="6" :lg="6" :xl="6" class="col-aside">
       <!-- 图标统计组件 -->
-      <card-chart />
+      <card-chart class="hidden-md-and-down" />
       <!-- 用户列表组件 -->
-      <card-user-list />
+      <card-user-list class="hidden-sm-and-down" />
       <!-- 标签云组件 -->
-      <card-tag-cloud />
+      <card-tag-cloud class="hidden-sm-and-down" />
     </el-col>
-    <el-col :span="2"><div class="grid-content"></div></el-col>
+    <el-col :xs="0" :md="2" :lg="2" :xl="2"
+      ><div class="grid-content"></div
+    ></el-col>
   </el-row>
 </template>
 
@@ -40,10 +50,11 @@ export default {
   margin-top: 20px;
 }
 .el-col {
-  border-radius: 4px;
   padding-bottom: 20px;
 }
-.grid-content {
-  border-radius: 4px;
+.col-content,
+.col-aside {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 </style>

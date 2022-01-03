@@ -5,7 +5,7 @@
       "content": "$menuText:#bfcbd9;$menuActiveText:#409EFF;$subMenuActiveText:#f4f4f5;",
       "cover": "@image('150x120','#02adea','Hello')",
       "author": "@sentence(1)",
-      "publishDate": "@datetime()",
+      "publishDate": "@date()",
       "like": "@integer(0, 100)",
       "type": "@sentence(1)",
       "comment": "@integer(0, 100)"
@@ -16,7 +16,7 @@
     "content": "@sentence(200)",
     "cover": "@image('150x120','#02adea','Hello')",
     "author": "@sentence(1)",
-    "publishDate": "@datetime()",
+    "publishDate": "@date()",
     "like": "@integer(0, 100)",
     "type": "@sentence(1)",
     "comment": "@integer(0, 100)"
