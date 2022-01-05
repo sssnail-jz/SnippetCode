@@ -232,7 +232,7 @@ img {
 .reply-list {
   margin-top: 10px;
   font-size: 13px;
-  background-color: #fafafa;
+  background-color: #FAFAFA;
   padding: 0 10px;
   color: #666;
   box-sizing: border-box;
