@@ -11,16 +11,16 @@
     ></el-col>
     <el-col :xs="23" :md="15" :lg="15" :xl="15" class="col-content">
       <!-- content 列表组件 -->
-      <card-content />
+      <list />
     </el-col>
     <!-- aside -->
     <el-col :xs="0" :md="6" :lg="6" :xl="6" class="col-aside">
       <!-- 图标统计组件 -->
-      <card-chart class="hidden-md-and-down" />
+      <chart class="hidden-md-and-down" />
       <!-- 标签云组件 -->
-      <card-tag-cloud class="hidden-sm-and-down" />
+      <tag-cloud class="hidden-sm-and-down" />
       <!-- 用户列表组件 -->
-      <card-user-list class="hidden-sm-and-down" />
+      <user-list class="hidden-sm-and-down" />
     </el-col>
     <el-col :xs="0" :md="1" :lg="1" :xl="1"
       ><div class="grid-content"></div
@@ -29,16 +29,16 @@
 </template>
 
 <script>
-import CardContent from './components/CardContent.vue'
-import CardUserList from './components/CardUserList.vue'
-import CardTagCloud from './components/CardTagCloud.vue'
-import CardChart from './components/CardChart.vue'
+import List from './components/List.vue'
+import UserList from './components/UserList.vue'
+import TagCloud from './components/TagCloud.vue'
+import Chart from './components/Chart.vue'
 export default {
   components: {
-    CardContent,
-    CardUserList,
-    CardTagCloud,
-    CardChart
+    List,
+    UserList,
+    TagCloud,
+    Chart
   }
 }
 </script>

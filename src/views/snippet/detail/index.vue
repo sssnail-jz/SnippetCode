@@ -231,7 +231,7 @@
     </el-col>
     <!-- aside -->
     <el-col :xs="0" :md="5" :lg="5" :xl="5" class="col-aside">
-      <card-user-profile class="el-card-snippet-aside"></card-user-profile>
+      <user-profile class="el-card-snippet-aside" />
     </el-col>
     <el-col :xs="0" :md="1" :lg="1" :xl="1"
       ><div class="grid-content"></div
@@ -241,11 +241,11 @@
 
 <script>
 import Prism from '@/assets/hightlight/prism.js'
-import CardUserProfile from './components/CardUserProfile.vue'
+import UserProfile from './components/UserProfile.vue'
 
 export default {
   components: {
-    CardUserProfile
+    UserProfile
   },
   data () {
     return {
