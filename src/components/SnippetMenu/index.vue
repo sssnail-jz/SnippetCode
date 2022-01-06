@@ -9,6 +9,7 @@
     :collapse="isCollapse"
     :style="menuStyleObject"
     :router="true"
+    :collapse-transition="false"
   >
     <el-submenu index="1">
       <template #title>

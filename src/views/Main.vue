@@ -41,11 +41,8 @@ export default {
   background-color: white;
 }
 .el-main {
-  background-color: #e9eef3;
+  background-color: #F0F0F5;
   padding: 0;
-}
-.el-footer {
-  background-color: #333744;
 }
 
 /*  */

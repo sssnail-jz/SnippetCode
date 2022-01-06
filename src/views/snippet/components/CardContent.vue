@@ -47,9 +47,6 @@
           <div class="more-div" style="relative"></div>
         </el-card>
       </div>
-      <!-- <div class="a-more-wraper">
-        <a class="a-more"> [More] </a>
-      </div> -->
     </el-card>
   </div>
 </template>
@@ -128,22 +125,6 @@ Snowflake 不仅是第一个获得**“年度 DB-Engines DBMS”**称号的软�
   );
 }
 
-.a-more-wraper {
-  text-align: center;
-  font-weight: 800;
-  font-size: 25px;
-  color: black;
-  font-family: 'Dosis', sans-serif;
-  -webkit-transition: color 0.5s 0.25s;
-  transition: color 0.5s 0.25s;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.a-more {
-  cursor: pointer;
-}
-
 .el-link-content-header {
   padding-left: 5px;
   padding-right: 10px;
@@ -153,6 +134,5 @@ Snowflake 不仅是第一个获得**“年度 DB-Engines DBMS”**称号的软�
 
 .el-divider--horizontal {
   height: 2px;
-  background-color: #304156;
 }
 </style>

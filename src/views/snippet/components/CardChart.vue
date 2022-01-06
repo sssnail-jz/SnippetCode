@@ -2,9 +2,9 @@
   <!-- pie chart -->
   <el-card class="box-card-aside" shadow="nerver" style="border: 0">
     <el-divider content-position="right">统计</el-divider>
-      <div class="text item" style="height: 300px">
-        <pie-chart :hight="85" />
-      </div>
+    <div class="text item" style="height: 300px">
+      <pie-chart :hight="85" />
+    </div>
   </el-card>
 </template>
 

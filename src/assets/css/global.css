@@ -22,3 +22,7 @@ ul {
 .el-card {
   border: 0;
 }
+
+.el-divider--horizontal {
+  background-color: #304156;
+}

@@ -6,7 +6,7 @@
         <el-link
           :key="item.title"
           v-for="item in snippetTagCloudList"
-          style="margin-right: 10px; margin-bottom: 10px; padding: 8px 10px"
+          style="margin-right: 10px; margin-bottom: 10px; padding: 8px 10px; color:black"
           class="pan-btn"
           :class="item.color"
         >
