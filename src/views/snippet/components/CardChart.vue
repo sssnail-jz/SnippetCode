@@ -1,24 +1,20 @@
 <template>
   <!-- pie chart -->
-
-  <el-card class="box-card-aside" shadow="nerver" style="border: 0; padding: 0">
+  <el-card class="box-card-aside" shadow="nerver" style="border: 0">
     <el-divider content-position="right">统计</el-divider>
-
-    <el-card class="box-card-aside" style="border-radius: 0; padding: 0">
-      <div class="text item" style="height: 350px">
-        <raddar-chart />
+      <div class="text item" style="height: 300px">
+        <pie-chart :hight="85" />
       </div>
-    </el-card>
   </el-card>
 </template>
 
 <script>
-import RaddarChart from '@/components/Charts/RaddarChart'
+import PieChart from '@/components/Charts/PieChart.vue'
 
 export default {
   name: 'SnippetUserList',
   components: {
-    RaddarChart
+    PieChart
   }
 }
 </script>
@@ -27,7 +23,12 @@ export default {
 .box-card-aside {
   margin-bottom: 10px;
   width: 100%;
-  height: 100%;
+}
+.el-link-content-header {
+  padding-left: 5px;
+  padding-right: 10px;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 .el-card__body {
   padding: 0 !important;
