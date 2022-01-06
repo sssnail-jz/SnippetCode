@@ -2,8 +2,9 @@
   <el-menu
     default-active="2"
     class="el-menu-vertical-demo"
-    background-color="#C0C4CC"
-    active-text-color="#ffd04b"
+    background-color="#304156"
+    text-color="#B2BECD"
+    active-text-color="gray"
     :unique-opened="true"
     :collapse="isCollapse"
     :style="menuStyleObject"
@@ -60,7 +61,6 @@ export default {
 /*  */
 .el-menu {
   height: 100%;
-
   border: 0;
   overflow: hidden;
 }

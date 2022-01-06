@@ -1,18 +1,13 @@
 <template>
   <el-container>
-    <el-header>
-      <snippet-svg
-        class="collapse-icon"
-        @click="changeCollapse"
-        :icon="collapseIcon"
-      ></snippet-svg>
+    <el-header height="40px" style="line-height: 40px">
+      <span class="iconfont" :class="collapseIcon" @click="changeCollapse"></span>
     </el-header>
     <el-main>
       <overlay-scrollbars ref="osComponentRef" style="height: 100%">
         <router-view></router-view>
       </overlay-scrollbars>
     </el-main>
-    <el-footer></el-footer>
   </el-container>
 </template>
 
@@ -26,7 +21,7 @@ export default {
   computed: {
     ...mapState(['isCollapse']),
     collapseIcon () {
-      return this.isCollapse ? '#icon-shouqi' : '#icon-zhankai'
+      return this.isCollapse ? 'icon-shouqi' : 'icon-zhankai'
     }
   },
   methods: {
@@ -43,9 +38,7 @@ export default {
   height: 100%;
 }
 .el-header {
-  background-color: #373d41;
-  height: 60px;
-  line-height: 60px;
+  background-color: white;
 }
 .el-main {
   background-color: #e9eef3;
@@ -53,7 +46,6 @@ export default {
 }
 .el-footer {
   background-color: #333744;
-  height: 60px;
 }
 
 /*  */

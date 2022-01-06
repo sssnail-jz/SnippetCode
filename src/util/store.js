@@ -9,8 +9,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     // 菜单栏是否折叠
-    isCollapse: true,
-    menuStyleObject: {}
+    isCollapse: false,
+    menuStyleObject: { width: '150px' }
   },
   mutations: {
     changeCollapse (state) {

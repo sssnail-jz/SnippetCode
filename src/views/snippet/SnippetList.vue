@@ -6,10 +6,10 @@
   3，small、xsmall 会隐藏右侧只留左侧
   -->
   <el-row class="row-bg">
-    <el-col :xs="0" :md="2" :lg="2" :xl="2"
+    <el-col :xs="0" :md="1" :lg="1" :xl="1"
       ><div class="grid-content"></div
     ></el-col>
-    <el-col :xs="23" :md="13" :lg="13" :xl="13" class="col-content">
+    <el-col :xs="23" :md="15" :lg="15" :xl="15" class="col-content">
       <!-- content 列表组件 -->
       <card-content />
     </el-col>
@@ -22,7 +22,7 @@
       <!-- 标签云组件 -->
       <card-tag-cloud class="hidden-sm-and-down" />
     </el-col>
-    <el-col :xs="0" :md="2" :lg="2" :xl="2"
+    <el-col :xs="0" :md="1" :lg="1" :xl="1"
       ><div class="grid-content"></div
     ></el-col>
   </el-row>
