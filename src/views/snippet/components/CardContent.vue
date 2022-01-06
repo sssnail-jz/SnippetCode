@@ -10,7 +10,7 @@
       <div class="header">
         <mallki
           class-name="mallki-text"
-          style="font-size: 20px"
+          style="font-size: 25px"
           :text="item.title"
         />
         <el-divider content-position="left" class="hidden-sm-and-down">
@@ -24,7 +24,7 @@
             item.author
           }}</el-link>
 
-          <snippet-svg icon="#icon-daima1"></snippet-svg>
+          <!-- <snippet-svg icon="#icon-daima1"></snippet-svg>
           <el-link class="pan-btn el-link-content-header">{{
             item.type
           }}</el-link>
@@ -37,15 +37,15 @@
           <snippet-svg icon="#icon-pinglun"></snippet-svg>
           <el-link class="pan-btn el-link-content-header">{{
             item.comment
-          }}</el-link>
+          }}</el-link> -->
         </el-divider>
       </div>
 
       <div class="text item content-div line-numbers">
-        <pre class="language-scss"><code>
+        <el-card>
           {{ content }}
-        </code></pre>
-        <div class="more-div" style="relative"></div>
+          <div class="more-div" style="relative"></div>
+        </el-card>
       </div>
       <!-- <div class="a-more-wraper">
         <a class="a-more"> [More] </a>
@@ -67,32 +67,11 @@ export default {
   data () {
     return {
       snippetList: [],
-      content: `// base color
-                $blue:#324157;
-                $light-blue:#3A71A8;
-                $red:#C03639;
-                $pink: #E65D6E;
-                $green: #30B08F;
-                $tiffany: #4AB7BD;
-                $yellow:#FEC171;
-                $panGreen: #30B08F;
-
-                // sidebar
-                $menuText:#bfcbd9;
-                $menuActiveText:#409EFF;
-                $subMenuActiveText:#f4f4f5;
-                
-                :export {
-                  menuText: $menuText;
-                  menuActiveText: $menuActiveText;
-                  subMenuActiveText: $subMenuActiveText;
-                  menuBg: $menuBg;
-                  menuHover: $menuHover;
-                  subMenuBg: $subMenuBg;
-                  subMenuHover: $subMenuHover;
-                  sideBarWidth: $sideBarWidth;
-                }
-                `
+      content: `年度 DBMS：Snowflake
+据最新公布的 DB-Engines 排行榜，Snowflake 凭借+5.79分的增长摘得 2021 年年度数据库桂冠！
+Snowflake属于完全托管的云服务器，它集成了数据仓库、数据集市和数据湖，同时支持数据跨平台分析。
+Snowflake 于 2014 年推出，经过多轮风险投资，Snowflake的规模不断拓展，并提供越来越多的功能。2020年9月，Snowflake成为迄今为止最大的IPO软件公司。
+Snowflake 不仅是第一个获得**“年度 DB-Engines DBMS”**称号的软件即服务，同时也是首个获得DBMS前三名的以数据仓库为中心的产品。`
     }
   },
   computed: {},
@@ -126,18 +105,19 @@ export default {
   margin-bottom: 10px;
   overflow: hidden;
   position: relative;
+  border-radius: 0;
 }
 /*  */
 .content-div {
   padding-left: 10px;
   padding-right: 10px;
-
+  padding-top: 10px;
   height: 480px;
   overflow: hidden;
   position: relative;
 }
 .more-div {
-  height: 130px;
+  height: 100px;
   position: absolute;
   bottom: 0px;
   left: 0;
@@ -147,6 +127,23 @@ export default {
     rgba(255, 255, 255, 1)
   );
 }
+
+.a-more-wraper {
+  text-align: center;
+  font-weight: 800;
+  font-size: 25px;
+  color: black;
+  font-family: 'Dosis', sans-serif;
+  -webkit-transition: color 0.5s 0.25s;
+  transition: color 0.5s 0.25s;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.a-more {
+  cursor: pointer;
+}
+
 .el-link-content-header {
   padding-left: 5px;
   padding-right: 10px;
@@ -154,18 +151,8 @@ export default {
   padding-bottom: 0;
 }
 
-/* .a-more-wraper {
-  position: absolute;
-  width: 100%;
-  text-align: center;
-  bottom: 5px;
-}
-.a-more {
-  font-size: 22px;
-  color: red;
-  cursor: pointer;
-} */
 .el-divider--horizontal {
   height: 2px;
+  background-color: #304156;
 }
 </style>

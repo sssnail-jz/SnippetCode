@@ -17,10 +17,10 @@
     <el-col :xs="0" :md="6" :lg="6" :xl="6" class="col-aside">
       <!-- 图标统计组件 -->
       <card-chart class="hidden-md-and-down" />
-      <!-- 用户列表组件 -->
-      <card-user-list class="hidden-sm-and-down" />
       <!-- 标签云组件 -->
       <card-tag-cloud class="hidden-sm-and-down" />
+      <!-- 用户列表组件 -->
+      <card-user-list class="hidden-sm-and-down" />
     </el-col>
     <el-col :xs="0" :md="1" :lg="1" :xl="1"
       ><div class="grid-content"></div

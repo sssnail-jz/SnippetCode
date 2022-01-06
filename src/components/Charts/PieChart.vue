@@ -58,7 +58,7 @@ export default {
             animationEasing: 'cubicInOut',
             animationDuration: 2600,
             label: {
-              show: false
+              show: true
             }
           }
         ]
