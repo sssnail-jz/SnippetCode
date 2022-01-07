@@ -46,20 +46,18 @@
           </span>
         </template>
 
-        <span class="comments-reply-btn ml15" @click="handleAddReply"
-          >回复</span
-        >
+        <span class="ml15">回复</span>
       </p>
       <div class="reply-list" v-show="hasReply">
         <slot></slot>
-        <div class="reply-item reply-item--ops">
-          <a
-            class="reply-inner-btn"
-            href="javascript:void(0);"
-            @click="handleAddReply"
-            >添加回复</a
-          >
-        </div>
+      </div>
+      <div class="reply-item reply-item--ops">
+        <a
+          class="reply-inner-btn"
+          href="javascript:void(0);"
+          @click="handleAddReply"
+          >添加回复</a
+        >
       </div>
     </div>
   </div>
@@ -165,7 +163,6 @@ img {
 }
 .comments-item {
   padding: 15px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.09);
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -188,6 +185,7 @@ img {
   color: #009a61;
   text-decoration: none;
   background: transparent;
+  font-size: 16px;
 }
 .comments-item a:hover,
 .comments-item a:active,
@@ -231,8 +229,9 @@ img {
 }
 .reply-list {
   margin-top: 10px;
+  margin-left: 10px;
   font-size: 13px;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
   padding: 0 10px;
   color: #666;
   box-sizing: border-box;
@@ -248,5 +247,8 @@ img {
   padding-bottom: 10px;
   padding-top: 10px;
   word-break: break-word;
+}
+.reply-inner-btn{
+  margin-left: 12px;
 }
 </style>

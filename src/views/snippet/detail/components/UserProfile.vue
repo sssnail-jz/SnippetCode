@@ -1,8 +1,6 @@
 <template>
-  <el-card style="margin-bottom: 20px">
-    <div slot="header" class="clearfix">
-      <span>About me</span>
-    </div>
+  <el-card>
+    <el-divider content-position="right">User</el-divider>
 
     <div class="user-profile">
       <div class="box-center">
@@ -24,7 +22,7 @@
 
     <div class="user-bio">
       <div class="user-education user-bio-section">
-        <div class="user-bio-section-header"><span>Education</span></div>
+        <el-divider content-position="right">Education</el-divider>
         <div class="user-bio-section-body">
           <div class="text-muted">
             JS in Computer Science from the University of Technology
@@ -33,7 +31,7 @@
       </div>
 
       <div class="user-skills user-bio-section">
-        <div class="user-bio-section-header"><span>Skills</span></div>
+        <el-divider content-position="right">skills</el-divider>
         <div class="user-bio-section-body">
           <div class="progress-item">
             <span>Vue</span>
