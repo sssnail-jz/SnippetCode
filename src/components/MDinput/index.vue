@@ -214,7 +214,7 @@ export default {
   $color-white: white;
   $color-grey: #9E9E9E;
   $color-grey-light: #E0E0E0;
-  $color-blue: #2196F3;
+  $color-vue: #009a61;
   $color-red: #F44336;
   $color-black: black;
   // Base clases:
@@ -247,7 +247,7 @@ export default {
         position: absolute;
         left: 0;
         line-height: $font-size-base;
-        color: $color-blue;
+        color: $color-vue;
         top: $spacer;
         width: $index-has-icon;
         height: $font-size-base;
@@ -273,7 +273,7 @@ export default {
       &:focus {
         outline: none;
         border: none;
-        border-bottom: 1px solid transparent; // fixes the height issue
+        border-bottom: 2px solid $color-vue; // fixes the height issue
       }
     }
     .material-label {
@@ -327,7 +327,7 @@ export default {
       background: none;
       color: $color-black;
       text-indent: $index;
-      border-bottom: 1px solid $color-grey-light;
+      border-bottom: 2px solid black;
     }
     .material-label {
       color: $color-grey;
@@ -335,13 +335,13 @@ export default {
     .material-input-bar {
       &:before,
       &:after {
-        background: $color-blue;
+        background: $color-vue;
       }
     }
     // Active state:
     &.material--active {
       .material-label {
-        color: $color-blue;
+        color: $color-vue;
       }
     }
     // Errors:

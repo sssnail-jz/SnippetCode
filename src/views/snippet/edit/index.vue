@@ -1,12 +1,21 @@
 <template>
-  <el-card class="box-card-aside">
+  <el-card class="box-card-aside" style="border-radius: 0">
+    <el-alert
+      title="Notice"
+      type="warning"
+      effect="dark"
+      show-icon
+      description="The content should be as short as possible, preferably no more than one page, which is the original intention of snippet"
+    >
+    </el-alert>
     <el-form ref="postForm">
-      <sticky style="z-index: 100; position: fixed; top: 70px; right: 25px">
-        <el-link class="pan-btn green-btn">提交</el-link>
-        <el-link class="pan-btn yellow-btn">草稿</el-link>
-      </sticky>
       <el-form-item prop="title">
-        <md-input icon="el-icon-search" name="title" placeholder="输入标题">
+        <md-input
+          icon="el-icon-search"
+          name="title"
+          placeholder="输入标题"
+          style="margin-top: 60px; margin-bottom: 20px"
+        >
           标题
         </md-input>
       </el-form-item>
@@ -46,7 +55,6 @@
 import Tinymce from '@/components/Tinymce'
 import MdInput from '@/components/MDinput'
 import Upload from '@/components/Upload/SingleImage3'
-import Sticky from '@/components/Sticky' // 粘性header组件
 import ElDragSelect from '@/components/DragSelect'
 
 const defaultForm = {
@@ -63,7 +71,6 @@ export default {
     Tinymce,
     MdInput,
     Upload,
-    Sticky,
     ElDragSelect
   },
   data () {
@@ -104,7 +111,8 @@ export default {
 
 <style lang="css" scoped>
 .el-card {
-  padding: 40px;
+  margin: 40px;
+  padding: 20px;
 }
 .el-link {
   margin-left: 10px;
