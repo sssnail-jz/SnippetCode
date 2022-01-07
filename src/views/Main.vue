@@ -1,11 +1,17 @@
 <template>
   <el-container>
     <el-header height="40px" style="line-height: 40px">
-      <span class="iconfont" :class="collapseIcon" @click="changeCollapse"></span>
+      <span
+        class="iconfont"
+        :class="collapseIcon"
+        @click="changeCollapse"
+      ></span>
     </el-header>
     <el-main>
       <overlay-scrollbars ref="osComponentRef" style="height: 100%">
-        <router-view></router-view>
+        <transition name="fade-transform" mode="out-in">
+          <router-view></router-view>
+        </transition>
       </overlay-scrollbars>
     </el-main>
   </el-container>
@@ -41,7 +47,7 @@ export default {
   background-color: white;
 }
 .el-main {
-  background-color: #F0F0F5;
+  background-color: #f0f0f5;
   padding: 0;
 }
 
