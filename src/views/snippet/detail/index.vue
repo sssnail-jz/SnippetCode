@@ -15,6 +15,8 @@
           {{ content }}
         </code></pre> -->
         <el-card>
+          <div class="title">今天是个好日子</div>
+          <el-divider></el-divider>
           <div>
             <p>获取自增主键的值：</p>
             <ul>
@@ -340,5 +342,11 @@ export default {
   background-color: #f0f0f5;
   padding: 0 20px;
   color: #303133;
+}
+.title {
+  font-weight: 800;
+  font-size: 25px;
+  color: black;
+  font-family: 'Dosis', sans-serif;
 }
 </style>
