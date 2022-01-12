@@ -15,17 +15,18 @@
           name="title"
           placeholder="输入标题"
           style="margin-top: 60px; margin-bottom: 20px"
+          v-model="postForm.title"
         >
           标题
         </md-input>
       </el-form-item>
       <el-form-item prop="content" style="margin-bottom: 30px">
-        <Tinymce :height="400" />
+        <Tinymce :height="400" v-model="postForm.content" />
       </el-form-item>
       <el-form-item>
         <span class="span-label">类型：</span>
         <el-drag-select
-          v-model="value"
+          v-model="postForm.tags"
           style="width: 500px"
           multiple
           placeholder="请选择"
@@ -39,15 +40,20 @@
         </el-drag-select>
 
         <div style="margin-top: 30px; margin-left: 70px">
-          <el-tag v-for="item of value" :key="item" style="margin-right: 15px">
+          <el-tag
+            v-for="item of postForm.tags"
+            :key="item"
+            style="margin-right: 15px"
+          >
             {{ item }}
           </el-tag>
         </div>
       </el-form-item>
       <el-form-item>
-        <Upload />
+        <Upload v-model="postForm.cover" />
       </el-form-item>
     </el-form>
+    <el-button type="primary" @click="onCreateSnippet">提交</el-button>
   </el-card>
 </template>
 
@@ -56,13 +62,13 @@ import Tinymce from '@/components/Tinymce'
 import MdInput from '@/components/MDinput'
 import Upload from '@/components/Upload/SingleImage3'
 import ElDragSelect from '@/components/DragSelect'
+import snippetRequest from '@/utils/snippetRequest'
 
 const defaultForm = {
   title: '',
   content: '',
   cover: '',
-  publishDate: undefined,
-  commentDisabled: false
+  tags: ['Apple', 'Banana', 'Orange']
 }
 
 export default {
@@ -75,8 +81,8 @@ export default {
   },
   data () {
     return {
+      // form 表单提交模型
       postForm: defaultForm,
-      value: ['Apple', 'Banana', 'Orange'],
       options: [
         {
           value: 'Apple',
@@ -104,6 +110,21 @@ export default {
   computed: {
     contentShortLength () {
       return this.postForm.content_short.length
+    }
+  },
+  methods: {
+    // 提交表单
+    async onCreateSnippet () {
+      // console.log(this.postForm)
+      await snippetRequest
+        .post('/snippet', this.postForm)
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          // 解析 snippet server 自定义的异常信息
+          console.log(JSON.parse(error.request.responseText))
+        })
     }
   }
 }
