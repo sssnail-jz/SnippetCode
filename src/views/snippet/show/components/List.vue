@@ -24,7 +24,6 @@
 
       <el-card class="box-card-content line-numbers">
         <div class="content-container" v-html="item.content"></div>
-        <!-- <div class="more-div"></div> -->
       </el-card>
     </el-card>
   </div>
@@ -48,19 +47,24 @@ export default {
   },
   computed: {},
   created () {
+    var that = this
     snippetRequest
       .get('/snippet')
       .then((res) => {
-        console.log(res.data)
-        this.snippetList = res.data.data
-        console.log(this.snippetList)
+        var list = res.data
+        this.snippetList = list.data
       })
-      .catch((err) => {
-        console.log(err)
-        console.error(err)
+      .catch((error) => {
+        console.log(error)
+        that.$notify({
+          content: '获取snippet列表失败!',
+          type: 'error'
+        })
       })
     this.hightLightTimmer = setInterval(() => {
       Prism.highlightAll()
+      clearInterval(this.hightLightTimmer)
+      this.hightLightTimmer = undefined
     }, 0)
   }
 }
@@ -76,7 +80,7 @@ export default {
 /*  */
 .box-card-index {
   width: 100%;
-  height: 600px;
+  /* height: 600px; */
   margin-bottom: 10px;
   overflow: hidden;
   position: relative;
@@ -85,6 +89,7 @@ export default {
 /*  */
 .box-card-content {
   padding: 0;
+  margin-top: 10px;
   height: 480px;
   overflow: hidden;
   position: relative;
@@ -92,17 +97,6 @@ export default {
 .content-container {
   height: 440px;
   overflow: hidden;
-}
-.more-div {
-  height: 100px;
-  position: absolute;
-  bottom: 00px;
-  left: 0;
-  right: 0;
-  background: -webkit-linear-gradient(
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 1)
-  );
 }
 
 .el-link-content-header {
