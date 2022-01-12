@@ -115,15 +115,24 @@ export default {
   methods: {
     // 提交表单
     async onCreateSnippet () {
+      var that = this
+
       // console.log(this.postForm)
       await snippetRequest
         .post('/snippet', this.postForm)
         .then(function (response) {
-          console.log(response)
+          that.$notify({
+            content: '创建成功！',
+            type: 'success'
+          })
         })
         .catch(function (error) {
           // 解析 snippet server 自定义的异常信息
-          console.log(JSON.parse(error.request.responseText))
+          const err = JSON.parse(error.request.responseText)
+          that.$notify({
+            content: err.msg,
+            type: 'error'
+          })
         })
     }
   }

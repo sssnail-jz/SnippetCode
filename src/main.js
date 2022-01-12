@@ -10,6 +10,8 @@ import '@/styles/index.scss' // global css
 import '@/assets/hightlight/prism.css'
 import 'overlayscrollbars/css/OverlayScrollbars.css'
 
+import Notification from './components/SnippetNotification'
+
 import OverlayScrollbars from 'overlayscrollbars'
 import { OverlayScrollbarsPlugin } from 'overlayscrollbars-vue'
 
@@ -21,6 +23,7 @@ Vue.component('snippet-svg', SnippetSvg)
 Vue.use(OverlayScrollbarsPlugin)
 Vue.use(OverlayScrollbars)
 Vue.use(SnippetComments)
+Vue.use(Notification)
 
 Vue.config.productionTip = false
 

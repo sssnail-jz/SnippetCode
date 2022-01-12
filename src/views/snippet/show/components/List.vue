@@ -2,11 +2,7 @@
   <div>
     <!-- snippet-list card -->
 
-    <el-card
-      class="box-card-content"
-      :key="item.id"
-      v-for="item in snippetList"
-    >
+    <el-card class="box-card-index" :key="item.id" v-for="item in snippetList">
       <div class="header">
         <mallki
           class-name="mallki-text"
@@ -23,30 +19,13 @@
           <el-link class="pan-btn el-link-content-header">{{
             item.author
           }}</el-link>
-
-          <!-- <snippet-svg icon="#icon-daima1"></snippet-svg>
-          <el-link class="pan-btn el-link-content-header">{{
-            item.type
-          }}</el-link>
-
-          <snippet-svg icon="#icon-dianzan"></snippet-svg>
-          <el-link class="pan-btn el-link-content-header">{{
-            item.like
-          }}</el-link>
-
-          <snippet-svg icon="#icon-pinglun"></snippet-svg>
-          <el-link class="pan-btn el-link-content-header">{{
-            item.comment
-          }}</el-link> -->
         </el-divider>
       </div>
 
-      <div class="text item content-div line-numbers">
-        <el-card>
-          {{ content }}
-          <div class="more-div" style="relative"></div>
-        </el-card>
-      </div>
+      <el-card class="box-card-content line-numbers">
+        <div class="content-container" v-html="item.content"></div>
+        <!-- <div class="more-div"></div> -->
+      </el-card>
     </el-card>
   </div>
 </template>
@@ -64,12 +43,7 @@ export default {
   data () {
     return {
       snippetList: [],
-      hightLightTimmer: undefined,
-      content: `年度 DBMS：Snowflake
-据最新公布的 DB-Engines 排行榜，Snowflake 凭借+5.79分的增长摘得 2021 年年度数据库桂冠！
-Snowflake属于完全托管的云服务器，它集成了数据仓库、数据集市和数据湖，同时支持数据跨平台分析。
-Snowflake 于 2014 年推出，经过多轮风险投资，Snowflake的规模不断拓展，并提供越来越多的功能。2020年9月，Snowflake成为迄今为止最大的IPO软件公司。
-Snowflake 不仅是第一个获得**“年度 DB-Engines DBMS”**称号的软件即服务，同时也是首个获得DBMS前三名的以数据仓库为中心的产品。`
+      hightLightTimmer: undefined
     }
   },
   computed: {},
@@ -77,8 +51,9 @@ Snowflake 不仅是第一个获得**“年度 DB-Engines DBMS”**称号的软�
     snippetRequest
       .get('/snippet')
       .then((res) => {
-        console.log(res)
-        this.snippetList = res.data
+        console.log(res.data)
+        this.snippetList = res.data.data
+        console.log(this.snippetList)
       })
       .catch((err) => {
         console.log(err)
@@ -99,7 +74,7 @@ Snowflake 不仅是第一个获得**“年度 DB-Engines DBMS”**称号的软�
 }
 
 /*  */
-.box-card-content {
+.box-card-index {
   width: 100%;
   height: 600px;
   margin-bottom: 10px;
@@ -108,18 +83,20 @@ Snowflake 不仅是第一个获得**“年度 DB-Engines DBMS”**称号的软�
   border-radius: 0;
 }
 /*  */
-.content-div {
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 10px;
+.box-card-content {
+  padding: 0;
   height: 480px;
   overflow: hidden;
   position: relative;
 }
+.content-container {
+  height: 440px;
+  overflow: hidden;
+}
 .more-div {
   height: 100px;
   position: absolute;
-  bottom: 0px;
+  bottom: 00px;
   left: 0;
   right: 0;
   background: -webkit-linear-gradient(
