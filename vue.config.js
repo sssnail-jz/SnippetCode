@@ -1,5 +1,5 @@
 module.exports = {
-  devServer: {
-    before: require('./src/mock/index.js')
-  }
+  // devServer: {
+  //   before: require('./src/mock/index.js')
+  // }
 }

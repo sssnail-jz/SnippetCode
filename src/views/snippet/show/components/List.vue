@@ -52,9 +52,9 @@
 </template>
 
 <script>
-import axios from 'axios'
 import Mallki from '@/components/TextHoverEffect/Mallki'
 import Prism from '@/assets/hightlight/prism.js'
+import snippetRequest from '@/utils/snippetRequest'
 
 export default {
   name: 'SnippetContent',
@@ -64,6 +64,7 @@ export default {
   data () {
     return {
       snippetList: [],
+      hightLightTimmer: undefined,
       content: `年度 DBMS：Snowflake
 据最新公布的 DB-Engines 排行榜，Snowflake 凭借+5.79分的增长摘得 2021 年年度数据库桂冠！
 Snowflake属于完全托管的云服务器，它集成了数据仓库、数据集市和数据湖，同时支持数据跨平台分析。
@@ -73,15 +74,17 @@ Snowflake 不仅是第一个获得**“年度 DB-Engines DBMS”**称号的软�
   },
   computed: {},
   created () {
-    axios
-      .get('/snippet/snippet-list')
+    snippetRequest
+      .get('/snippet')
       .then((res) => {
+        console.log(res)
         this.snippetList = res.data
       })
       .catch((err) => {
+        console.log(err)
         console.error(err)
       })
-    setInterval(() => {
+    this.hightLightTimmer = setInterval(() => {
       Prism.highlightAll()
     }, 0)
   }
