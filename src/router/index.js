@@ -10,6 +10,7 @@ import Calculate from '../views/personal/Calculate.vue'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
+  mode: 'history',
   routes: [
     {
       path: '/',

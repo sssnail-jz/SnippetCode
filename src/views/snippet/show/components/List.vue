@@ -46,19 +46,19 @@ export default {
       prismTimer: undefined
     }
   },
-  created () {
-    this.getSnipptList()
+  // 将 created 改为异步是为了配合 prism
+  async created () {
+    await this.fetchData()
     this.initPrism()
   },
   methods: {
     // 获取 snippet 列表
-    async getSnipptList () {
+    async fetchData () {
       var that = this
       await snippetRequest
         .get('/snippet')
         .then((res) => {
-          var list = res.data
-          this.snippetList = list.data
+          this.snippetList = res.data.data
           // console.log(this.snippetList)
         })
         .catch((error) => {
