@@ -10,7 +10,7 @@
         shadow="never"
         style="border-radius: 0; background: none"
       >
-        <el-card>
+        <el-card v-if="snippetDetail">
           <div class="title">{{ snippetDetail.title }}</div>
           <el-divider></el-divider>
           <div class="line-numbers" v-html="snippetDetail.content"></div>
@@ -20,26 +20,28 @@
         </el-divider>
         <comments-item
           v-for="comment in comments"
-          :key="comment.id"
-          :avatar="comment.headimg"
-          :author="comment.author"
+          :key="comment._id"
+          :author="comment.author.name"
           :content="comment.content"
-          :time="comment.createTime"
-          :hasReply="replys[comment.id] && replys[comment.id].length > 0"
+          :time="comment.createdDate"
+          :hasReply="false"
           @clickAvatar="handleClickAvatar(comment)"
           @clickAuthor="handleClickAuthor(comment)"
           @addReply="handleAddReply(comment)"
-          @addComment="handleAddComment"
         >
-          <reply-item
+          <!-- <reply-item
             v-for="reply in replys[comment.id]"
             :key="reply.id"
             :author="reply.author"
             :content="reply.content"
             :time="reply.createTime"
           >
-          </reply-item>
+          </reply-item> -->
         </comments-item>
+        <comment-dialog
+          @addComment="handleAddComment"
+          style="margin-left: 40px"
+        ></comment-dialog>
       </el-card>
     </el-col>
     <!-- aside -->
@@ -56,6 +58,7 @@
 import Prism from '@/assets/hightlight/prism.js'
 import UserProfile from './components/UserProfile.vue'
 import snippetRequest from '@/utils/snippetRequest'
+import CommentDialog from './components/CommentDialog.vue'
 
 export default {
   /**
@@ -63,36 +66,19 @@ export default {
    */
   props: ['snippetId'],
   components: {
-    UserProfile
+    UserProfile,
+    CommentDialog
   },
   data () {
     return {
       prismTimer: undefined,
       snippetDetail: undefined,
-      comments: [
-        {
-          id: 0,
-          avatar: null,
-          author: 'jack',
-          content: 'contenttt',
-          createTime: 12345
-        }
-      ],
-      replys: [
-        [
-          {
-            id: 100,
-            avator: null,
-            author: 'hai',
-            content: 'haiii',
-            createTime: 123456
-          }
-        ]
-      ]
+      comments: []
     }
   },
   async created () {
     await this.fetchData()
+    await this.fetchCommentData()
     this.initPrism()
   },
   methods: {
@@ -100,6 +86,7 @@ export default {
     handleAddReply (comment) {
       this.replys[comment.id].push(comment)
     },
+
     // 添加评论
     async handleAddComment (event, content) {
       var that = this
@@ -121,7 +108,9 @@ export default {
           })
         })
     },
+
     handleClose () {},
+
     // 初始化高亮
     initPrism () {
       this.prismTimer = setInterval(() => {
@@ -130,7 +119,8 @@ export default {
         this.prismTimer = undefined
       }, 0)
     },
-    // 获取 id 对应的数据
+
+    // 通过 snippet id 获取 snippet 信息
     async fetchData () {
       var that = this
       await snippetRequest
@@ -143,6 +133,24 @@ export default {
           console.log(error)
           that.$notify({
             content: '获取snippet Detail 失败!',
+            type: 'error'
+          })
+        })
+    },
+
+    // 通过 snippet id 获取此 snippet 对应的评论
+    async fetchCommentData () {
+      var that = this
+      await snippetRequest
+        .get('/comment/' + this.snippetId)
+        .then((res) => {
+          this.comments = res.data.data
+          // console.log(this.comments)
+        })
+        .catch((error) => {
+          console.log(error)
+          that.$notify({
+            content: '获取评论列表失败!',
             type: 'error'
           })
         })
