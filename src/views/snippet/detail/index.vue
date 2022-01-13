@@ -15,33 +15,36 @@
           <el-divider></el-divider>
           <div class="line-numbers" v-html="snippetDetail.content"></div>
         </el-card>
-        <el-divider content-position="left" style="background: none">
-          评论
-        </el-divider>
-        <comments-item
-          v-for="comment in comments"
-          :key="comment._id"
-          :author="comment.author.name"
-          :content="comment.content"
-          :time="comment.createdDate"
-          :hasReply="false"
-          @clickAvatar="handleClickAvatar(comment)"
-          @clickAuthor="handleClickAuthor(comment)"
-          @addReply="handleAddReply(comment)"
-        >
-          <!-- <reply-item
-            v-for="reply in replys[comment.id]"
-            :key="reply.id"
-            :author="reply.author"
-            :content="reply.content"
-            :time="reply.createTime"
+
+        <div v-if="comments">
+          <el-divider content-position="left" style="background: none">
+            评论
+          </el-divider>
+          <comments-item
+            v-for="comment in comments"
+            :key="comment._id"
+            :author="comment.author.name"
+            :content="comment.content"
+            :time="comment.createdDate"
+            :hasReply="hasReplys(comment)"
+            @clickAvatar="handleClickAvatar(comment)"
+            @clickAuthor="handleClickAuthor(comment)"
+            @contentReady="handleAddReply(comment, ...arguments)"
           >
-          </reply-item> -->
-        </comments-item>
-        <comment-dialog
-          @addComment="handleAddComment"
-          style="margin-left: 40px"
-        ></comment-dialog>
+            <reply-item
+              v-for="reply in comment.replys"
+              :key="reply._id"
+              :author="reply.author.name"
+              :content="reply.content"
+              :time="reply.createdDate"
+            >
+            </reply-item>
+          </comments-item>
+          <content-dialog
+            @contentReady="handleAddComment"
+            style="margin-left: 40px"
+          ></content-dialog>
+        </div>
       </el-card>
     </el-col>
     <!-- aside -->
@@ -58,7 +61,7 @@
 import Prism from '@/assets/hightlight/prism.js'
 import UserProfile from './components/UserProfile.vue'
 import snippetRequest from '@/utils/snippetRequest'
-import CommentDialog from './components/CommentDialog.vue'
+import ContentDialog from '@/components/SnippetContentDialog'
 
 export default {
   /**
@@ -67,13 +70,13 @@ export default {
   props: ['snippetId'],
   components: {
     UserProfile,
-    CommentDialog
+    ContentDialog
   },
   data () {
     return {
       prismTimer: undefined,
       snippetDetail: undefined,
-      comments: []
+      comments: undefined
     }
   },
   async created () {
@@ -82,9 +85,30 @@ export default {
     this.initPrism()
   },
   methods: {
-    // 添加回复
-    handleAddReply (comment) {
-      this.replys[comment.id].push(comment)
+    // 添加回复，这里的参数集合了 子组件 emit 的参数和父组件自己的参数
+    // 第一个参数为父组件自己的，后面的为子组件的
+    async handleAddReply (...arg) {
+      console.log(arg)
+      var that = this
+      await snippetRequest
+        .post(`/reply/${arg[0]._id}`, {
+          content: arg[2]
+        })
+        .then((res) => {
+          that.$notify({
+            content: '添加回复成功',
+            type: 'success'
+          })
+          // 添加回复成功，更新评论数据
+          that.fetchCommentData()
+        })
+        .catch((error) => {
+          const err = JSON.parse(error.request.responseText)
+          that.$notify({
+            content: err.msg,
+            type: 'error'
+          })
+        })
     },
 
     // 添加评论
@@ -99,6 +123,8 @@ export default {
             content: '添加评论成功',
             type: 'success'
           })
+          // 添加评论成功，更新评论数据
+          that.fetchCommentData()
         })
         .catch((error) => {
           const err = JSON.parse(error.request.responseText)
@@ -107,6 +133,11 @@ export default {
             type: 'error'
           })
         })
+    },
+
+    // 判断是否存在回复
+    hasReplys (comment) {
+      return comment.replys.length > 0
     },
 
     handleClose () {},
@@ -145,7 +176,7 @@ export default {
         .get('/comment/' + this.snippetId)
         .then((res) => {
           this.comments = res.data.data
-          // console.log(this.comments)
+          console.log(this.comments)
         })
         .catch((error) => {
           console.log(error)

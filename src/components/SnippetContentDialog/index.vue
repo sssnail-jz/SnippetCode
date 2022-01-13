@@ -4,7 +4,7 @@
     <el-dialog
       :visible.sync="dialogVisible"
       :append-to-body="true"
-      title="添加评论内容"
+      title="内容"
       width="50%"
       top="20%"
     >
@@ -18,9 +18,7 @@
       </el-input>
       <div>
         <el-button @click="dialogVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="onAddComment"
-          >Confirm</el-button
-        >
+        <el-button type="primary" @click="onContentReady">Confirm</el-button>
       </div>
     </el-dialog>
   </div>
@@ -28,7 +26,7 @@
 
 <script>
 export default {
-  name: 'CommentDialog',
+  name: 'ContentDialog',
   data () {
     return {
       dialogVisible: false,
@@ -36,10 +34,10 @@ export default {
     }
   },
   methods: {
-    onAddComment (event) {
+    onContentReady (event) {
       event.stopPropagation()
       this.dialogVisible = false
-      this.$emit('addComment', this, this.dialogContent)
+      this.$emit('contentReady', this, this.dialogContent)
     }
   }
 }
