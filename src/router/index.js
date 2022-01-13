@@ -14,23 +14,31 @@ const router = new VueRouter({
     {
       path: '/',
       component: Home,
-      redirect: '/home',
+      // 通过命名路由重定向
+      redirect: { name: 'main' },
       children: [
         {
-          path: 'home',
+          path: 'main',
+          name: 'main',
           component: Main,
-          redirect: '/home/snippet-show',
+          // 通过命名路由重定向
+          redirect: { name: 'snippet-show' },
           children: [
             {
               path: 'snippet-show',
+              name: 'snippet-show',
               component: SnippetShow
             },
             {
               path: 'snippet-create',
+              name: 'snippet-create',
               component: SnippetEdit
             },
             {
-              path: 'snippet-detail',
+              path: 'snippet-detail/:snippetId',
+              name: 'snippet-detail',
+              // 将路由参数转换为 props
+              props: true,
               component: SnippetDetail
             },
             {
@@ -46,6 +54,12 @@ const router = new VueRouter({
       ]
     }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  console.log(from.fullPath)
+  console.log(to.fullPath)
+  next()
 })
 
 export default router

@@ -19,28 +19,28 @@
         ></snippet-svg>
         <span>Snippet</span>
       </template>
-      <el-menu-item index="/home/snippet-create">
+      <el-menu-item index="1-1" :route="{ name: 'snippet-create' }">
         <snippet-svg class="menu-icon" icon="#icon-fabu"></snippet-svg>
         <span>发布</span>
       </el-menu-item>
-      <el-menu-item index="/home/snippet-detail">
+      <el-menu-item index="1-2" :route="{ name: 'snippet-detail' }">
         <snippet-svg class="menu-icon" icon="#icon-woguanlide"></snippet-svg>
         <span>管理</span></el-menu-item
       >
     </el-submenu>
-    <el-menu-item index="/home/count">
+    <el-menu-item index="2">
       <snippet-svg class="menu-icon" icon="#icon-zhexiantu"></snippet-svg>
       <span>数据</span>
     </el-menu-item>
-    <el-menu-item index="/home/calculate">
+    <el-menu-item index="3">
       <snippet-svg class="menu-icon" icon="#icon-tongji"></snippet-svg>
       <span>统计</span>
     </el-menu-item>
-    <el-menu-item index="3">
+    <el-menu-item index="4">
       <snippet-svg class="menu-icon" icon="#icon-quanzi"></snippet-svg>
       <span>圈子</span>
     </el-menu-item>
-    <el-menu-item index="4">
+    <el-menu-item index="5">
       <snippet-svg class="menu-icon" icon="#icon-shequpinglun"></snippet-svg>
       <span>社区</span>
     </el-menu-item>

@@ -1,5 +1,5 @@
 <template>
-  <a :class="className" class="link--mallki" href="#">
+  <a :class="className" class="link--mallki" href="#" @click="click">
     {{ text }}
     <span :data-letters="text" />
     <span :data-letters="text" />
@@ -16,6 +16,11 @@ export default {
     text: {
       type: String,
       default: 'snippet'
+    }
+  },
+  methods: {
+    click () {
+      this.$emit('click')
     }
   }
 }

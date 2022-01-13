@@ -8,6 +8,7 @@
           class-name="mallki-text"
           style="font-size: 25px"
           :text="item.title"
+          @click="onGoToDetail(item._id)"
         />
         <el-divider content-position="left" class="hidden-sm-and-down">
           <snippet-svg icon="#icon-riqi"></snippet-svg>
@@ -35,67 +36,87 @@ import Prism from '@/assets/hightlight/prism.js'
 import snippetRequest from '@/utils/snippetRequest'
 
 export default {
-  name: 'SnippetContent',
+  name: 'SnippetList',
   components: {
     Mallki
   },
   data () {
     return {
       snippetList: [],
-      hightLightTimmer: undefined
+      prismTimer: undefined
     }
   },
-  computed: {},
   created () {
-    var that = this
-    snippetRequest
-      .get('/snippet')
-      .then((res) => {
-        var list = res.data
-        this.snippetList = list.data
-      })
-      .catch((error) => {
-        console.log(error)
-        that.$notify({
-          content: '获取snippet列表失败!',
-          type: 'error'
+    this.getSnipptList()
+    this.initPrism()
+  },
+  methods: {
+    // 获取 snippet 列表
+    async getSnipptList () {
+      var that = this
+      await snippetRequest
+        .get('/snippet')
+        .then((res) => {
+          var list = res.data
+          this.snippetList = list.data
+          // console.log(this.snippetList)
         })
+        .catch((error) => {
+          console.log(error)
+          that.$notify({
+            content: '获取snippet列表失败!',
+            type: 'error'
+          })
+        })
+    },
+    // 初始化高亮
+    initPrism () {
+      this.prismTimer = setInterval(() => {
+        Prism.highlightAll()
+        clearInterval(this.prismTimer)
+        this.prismTimer = undefined
+      }, 0)
+    },
+    // 跳转到文章详情
+    onGoToDetail (itemId) {
+      this.$router.push({
+        name: 'snippet-detail',
+        params: {
+          snippetId: itemId
+        }
       })
-    this.hightLightTimmer = setInterval(() => {
-      Prism.highlightAll()
-      clearInterval(this.hightLightTimmer)
-      this.hightLightTimmer = undefined
-    }, 0)
+      console.log(itemId)
+    }
   }
 }
 </script>
 
 <style scoped>
-/*  */
 .ul-content {
   margin: 0;
   list-style: none;
 }
 
-/*  */
 .box-card-index {
   width: 100%;
-  /* height: 600px; */
   margin-bottom: 10px;
   overflow: hidden;
   position: relative;
   border-radius: 0;
 }
-/*  */
+
 .box-card-content {
-  padding: 0;
+  padding: 10px;
   margin-top: 10px;
   height: 480px;
   overflow: hidden;
   position: relative;
 }
+/*
+  模型：440 + 10 + 10 + 20 + 20 = 480
+*/
 .content-container {
-  height: 440px;
+  height: 420px;
   overflow: hidden;
 }
 

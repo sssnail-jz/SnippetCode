@@ -21,7 +21,10 @@
               </pan-thumb>
             </el-link>
 
-            <el-link class="pan-btn el-link-content-header" style=" font-size: 16px">
+            <el-link
+              class="pan-btn el-link-content-header"
+              style="font-size: 16px"
+            >
               {{ item.name }}
 
               <snippet-svg
@@ -38,7 +41,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import PanThumb from '@/components/PanThumb'
 
 export default {
@@ -52,14 +54,14 @@ export default {
     }
   },
   created () {
-    axios
-      .get('/user/user-list')
-      .then((res) => {
-        this.userList = res.data
-      })
-      .catch((err) => {
-        console.error(err)
-      })
+    // axios
+    //   .get('/user/user-list')
+    //   .then((res) => {
+    //     this.userList = res.data
+    //   })
+    //   .catch((err) => {
+    //     console.error(err)
+    //   })
   }
 }
 </script>

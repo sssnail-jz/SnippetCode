@@ -254,11 +254,16 @@ import Prism from '@/assets/hightlight/prism.js'
 import UserProfile from './components/UserProfile.vue'
 
 export default {
+  /**
+   * snippetId：路由 params 参数
+   */
+  props: ['snippetId'],
   components: {
     UserProfile
   },
   data () {
     return {
+      prismTimer: undefined,
       comments: [
         {
           id: 0,
@@ -298,13 +303,20 @@ export default {
     }
   },
   mounted () {
-    setInterval(() => {
-      Prism.highlightAll()
-    }, 0)
+    this.initPrism()
+    console.log(this.snippetId)
   },
   methods: {
     handleAddReply (comment) {
       this.replys[comment.id].push(comment)
+    },
+    // 初始化高亮
+    initPrism () {
+      this.prismTimer = setInterval(() => {
+        Prism.highlightAll()
+        clearInterval(this.prismTimer)
+        this.prismTimer = undefined
+      }, 0)
     }
   }
 }

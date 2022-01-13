@@ -31,7 +31,8 @@ const notify = (options = {}) => {
         verticalOffset: 0,
         timer: null,
         visible: false,
-        height: 0
+        height: 0,
+        title: ''
       }
     },
     computed: {
@@ -40,12 +41,16 @@ const notify = (options = {}) => {
         var backgroundColor = ''
         if (options.type === 'error') {
           backgroundColor = 'rgb(245, 108, 108)'
+          this.title = 'error'
         } else if (options.type === 'info') {
           backgroundColor = 'rgb(144, 147, 153)'
+          this.title = 'info'
         } else if (options.type === 'success') {
           backgroundColor = 'rgb(103, 194, 58)'
+          this.title = 'success'
         } else if (options.type === 'warring') {
           backgroundColor = 'rgb(230, 162, 60)'
+          this.title = 'warning'
         }
 
         return {

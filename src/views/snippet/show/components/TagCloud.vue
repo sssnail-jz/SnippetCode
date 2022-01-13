@@ -2,23 +2,26 @@
   <!-- tag cloud -->
   <el-card class="box-card-aside" shadow="nerver" style="border: 0">
     <el-divider content-position="right">标签云</el-divider>
-      <div class="text item">
-        <el-link
-          :key="item.title"
-          v-for="item in snippetTagCloudList"
-          style="margin-right: 10px; margin-bottom: 10px; padding: 8px 10px; color:black"
-          class="pan-btn"
-          :class="item.color"
-        >
-          {{ item.title }}
-        </el-link>
-      </div>
+    <div class="text item">
+      <el-link
+        :key="item.title"
+        v-for="item in snippetTagCloudList"
+        style="
+          margin-right: 10px;
+          margin-bottom: 10px;
+          padding: 8px 10px;
+          color: black;
+        "
+        class="pan-btn"
+        :class="item.color"
+      >
+        {{ item.title }}
+      </el-link>
+    </div>
   </el-card>
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   name: 'SnippetUserList',
 
@@ -28,14 +31,14 @@ export default {
     }
   },
   created () {
-    axios
-      .get('/snippet/snippet-tag-cloud')
-      .then((res) => {
-        this.snippetTagCloudList = res.data
-      })
-      .catch((err) => {
-        console.error(err)
-      })
+    // axios
+    //   .get('/snippet/snippet-tag-cloud')
+    //   .then((res) => {
+    //     this.snippetTagCloudList = res.data
+    //   })
+    //   .catch((err) => {
+    //     console.error(err)
+    //   })
   }
 }
 </script>
