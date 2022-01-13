@@ -125,6 +125,13 @@ export default {
             content: '创建成功！',
             type: 'success'
           })
+          const snippetId = response.data._id
+          that.$router.push({
+            name: 'snippet-detail',
+            params: {
+              snippetId: snippetId
+            }
+          })
         })
         .catch(function (error) {
           // 解析 snippet server 自定义的异常信息

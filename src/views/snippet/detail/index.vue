@@ -13,7 +13,7 @@
         <el-card>
           <div class="title">{{ snippetDetail.title }}</div>
           <el-divider></el-divider>
-          <div v-html="snippetDetail.content"></div>
+          <div class="line-numbers" v-html="snippetDetail.content"></div>
         </el-card>
         <el-divider content-position="left" style="background: none">
           评论
@@ -29,6 +29,7 @@
           @clickAvatar="handleClickAvatar(comment)"
           @clickAuthor="handleClickAuthor(comment)"
           @addReply="handleAddReply(comment)"
+          @addComment="handleAddComment"
         >
           <reply-item
             v-for="reply in replys[comment.id]"
@@ -95,9 +96,32 @@ export default {
     this.initPrism()
   },
   methods: {
+    // 添加回复
     handleAddReply (comment) {
       this.replys[comment.id].push(comment)
     },
+    // 添加评论
+    async handleAddComment (event, content) {
+      var that = this
+      await snippetRequest
+        .post(`/comment/${this.snippetDetail._id}`, {
+          content: content
+        })
+        .then((res) => {
+          that.$notify({
+            content: '添加评论成功',
+            type: 'success'
+          })
+        })
+        .catch((error) => {
+          const err = JSON.parse(error.request.responseText)
+          that.$notify({
+            content: err.msg,
+            type: 'error'
+          })
+        })
+    },
+    handleClose () {},
     // 初始化高亮
     initPrism () {
       this.prismTimer = setInterval(() => {

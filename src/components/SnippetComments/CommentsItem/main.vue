@@ -59,6 +59,31 @@
           >添加回复</a
         >
       </div>
+      <el-button type="primary" @click="dialogVisible = true"
+        >添加评论</el-button
+      >
+      <el-dialog
+        :visible.sync="dialogVisible"
+        :append-to-body="true"
+        title="添加评论内容"
+        width="50%"
+        top="20%"
+      >
+        <el-input
+          v-model="dialogContent"
+          :autosize="{ minRows: 4, maxRows: 6 }"
+          type="textarea"
+          placeholder="Please input"
+          style="margin-bottom: 20px"
+        >
+        </el-input>
+        <div>
+          <el-button @click="dialogVisible = false">Cancel</el-button>
+          <el-button type="primary" @click="handleClickAddComment"
+            >Confirm</el-button
+          >
+        </div>
+      </el-dialog>
     </div>
   </div>
 </template>
@@ -76,7 +101,10 @@ export default {
     hasReply: Boolean
   },
   data () {
-    return {}
+    return {
+      dialogVisible: false,
+      dialogContent: ''
+    }
   },
   computed: {},
   methods: {
@@ -95,6 +123,11 @@ export default {
     handleAddReply (event) {
       event.stopPropagation()
       this.$emit('addReply', this)
+    },
+    handleClickAddComment (event) {
+      event.stopPropagation()
+      this.dialogVisible = false
+      this.$emit('addComment', this, this.dialogContent)
     }
   },
   filters: {
@@ -248,7 +281,7 @@ img {
   padding-top: 10px;
   word-break: break-word;
 }
-.reply-inner-btn{
+.reply-inner-btn {
   margin-left: 12px;
 }
 </style>

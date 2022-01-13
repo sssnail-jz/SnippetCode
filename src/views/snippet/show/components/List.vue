@@ -85,7 +85,6 @@ export default {
           snippetId: itemId
         }
       })
-      console.log(itemId)
     }
   }
 }
