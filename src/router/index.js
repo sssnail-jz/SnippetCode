@@ -7,6 +7,7 @@ import SnippetEdit from '../views/snippet/edit'
 import SnippetDetail from '../views/snippet/detail'
 import Count from '../views/personal/Count.vue'
 import Calculate from '../views/personal/Calculate.vue'
+import SnippetLogin from '@/components/SnippetLogin'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,16 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
+      redirect: { name: 'login' }
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: SnippetLogin
+    },
+    {
+      path: '/home',
+      name: 'home',
       component: Home,
       // 通过命名路由重定向
       redirect: { name: 'main' },

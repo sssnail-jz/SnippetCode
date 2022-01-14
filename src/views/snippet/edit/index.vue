@@ -117,7 +117,6 @@ export default {
     async onCreateSnippet () {
       var that = this
 
-      // console.log(this.postForm)
       await snippetRequest
         .post('/snippet', this.postForm)
         .then(function (response) {

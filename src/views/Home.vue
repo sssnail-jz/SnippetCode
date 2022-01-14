@@ -2,8 +2,7 @@
   <el-container>
     <snippet-menu />
     <el-main>
-      <!-- <router-view></router-view> -->
-      <snippet-login></snippet-login>
+      <router-view></router-view>
     </el-main>
     <snippet-drawer />
   </el-container>
@@ -12,13 +11,11 @@
 <script>
 import SnippetMenu from '@/components/SnippetMenu'
 import SnippetDrawer from '@/components/SnippetDrawer'
-import SnippetLogin from '@/components/SnippetLogin'
 
 export default {
   components: {
     SnippetMenu,
-    SnippetDrawer,
-    SnippetLogin
+    SnippetDrawer
   }
 }
 </script>

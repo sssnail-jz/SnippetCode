@@ -49,19 +49,21 @@
             <fieldset class="forms_fieldset">
               <div class="forms_field">
                 <input
-                  type="email"
-                  placeholder="Email"
+                  type="text"
+                  placeholder="用户名"
                   class="forms_field-input"
                   required
                   autofocus
+                  v-model="loginForm.username"
                 />
               </div>
               <div class="forms_field">
                 <input
                   type="password"
-                  placeholder="Password"
+                  placeholder="密码"
                   class="forms_field-input"
                   required
+                  v-model="loginForm.password"
                 />
               </div>
             </fieldset>
@@ -73,6 +75,7 @@
                 type="submit"
                 value="Log In"
                 class="forms_buttons-action"
+                @click="onLogin"
               />
             </div>
           </form>
@@ -121,11 +124,14 @@
 </template>
 
 <script>
+import snippetRequest from '@/utils/snippetRequest'
 export default {
   name: 'SnippetLogin',
   data () {
     return {
-      dynamicClass: ''
+      dynamicClass: '',
+      loginForm: { username: '', password: '' },
+      siginUpForm: { username: '', password: '', email: '' }
     }
   },
   methods: {
@@ -134,6 +140,31 @@ export default {
     },
     onLoginButton () {
       this.dynamicClass = 'bounceRight'
+    },
+    async onLogin (event) {
+      event.preventDefault()
+      var that = this
+      await snippetRequest
+        .post(
+          `/auth/login?username=${this.loginForm.username}&password=${this.loginForm.password}`
+        )
+        .then(function (response) {
+          that.$notify({
+            content: '登录成功！',
+            type: 'success'
+          })
+          const accessToken = response.data.access_token
+          console.log(accessToken)
+          that.$router.push({ name: 'home' })
+        })
+        .catch(function (error) {
+          // 解析 snippet server 自定义的异常信息
+          const err = JSON.parse(error.request.responseText)
+          that.$notify({
+            content: err.msg,
+            type: 'error'
+          })
+        })
     }
   }
 }
@@ -197,26 +228,20 @@ input
 @keyframes bounceLeft
   0%
       transform: translate3d(100%, -50%, 0)
-
   50%
       transform: translate3d(-30px, -50%, 0)
-
   100%
       transform: translate3d(0, -50%, 0)
-
 /**
  * Bounce to the left side
  */
 @keyframes bounceRight
   0%
     transform: translate3d(0, -50%, 0)
-
   50%
     transform: translate3d(calc(100% + 30px), -50%, 0)
-
   100%
     transform: translate3d(100%, -50%, 0)
-
 /**
  * Show Sign Up form
  */
@@ -225,7 +250,6 @@ input
     opacity: 1
     visibility: visible
     transform: translate3d(0, 0, 0)
-
 /**
  * Page background
  */
