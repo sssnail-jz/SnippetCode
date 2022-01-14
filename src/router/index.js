@@ -7,6 +7,7 @@ import SnippetEdit from '../views/snippet/edit'
 import SnippetDetail from '../views/snippet/detail'
 import Count from '../views/personal/Count.vue'
 import Calculate from '../views/personal/Calculate.vue'
+
 Vue.use(VueRouter)
 
 const router = new VueRouter({
