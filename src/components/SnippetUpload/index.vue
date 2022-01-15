@@ -39,7 +39,7 @@ export default {
       dialogImageUrl: '',
       dialogVisible: false,
       disabled: false,
-      dataObj: { uname: '' },
+      dataObj: { uname: '', dir: 'cover' },
       headers: { Authorization: '' }
     }
   },

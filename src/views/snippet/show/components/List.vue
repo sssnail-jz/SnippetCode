@@ -18,14 +18,14 @@
 
           <snippet-svg icon="#icon-yonghu"></snippet-svg>
           <el-link class="pan-btn el-link-content-header">{{
-            item.author
+            item.author.name
           }}</el-link>
         </el-divider>
       </div>
 
       <el-card class="box-card-content line-numbers">
         <div>
-          <img style="max-width: 200px" :src="onCover(item.cover)" alt="" />
+          <img style="height: 120px" :src="onCover(item.cover)" alt="" />
         </div>
 
         <div class="content-container" v-html="item.content"></div>
@@ -83,7 +83,7 @@ export default {
 
     // 获取文章封面
     onCover (uname) {
-      return 'http://localhost:3000/upload/' + uname
+      return 'http://localhost:3000/upload/cover/' + uname
     }
   }
 }
@@ -111,10 +111,10 @@ export default {
   position: relative;
 }
 /*
-  模型：440 + 10 + 10 + 20 + 20 = 480
+  模型：300 + 10 + 10 + 20 + 20 + 120 = 480
 */
 .content-container {
-  height: 420px;
+  height: 300px;
   overflow: hidden;
 }
 

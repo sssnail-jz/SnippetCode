@@ -15,7 +15,7 @@
               <pan-thumb
                 width="45px"
                 height="45px"
-                :image="item.avatar"
+                :image="onAvatar(item.avatar)"
                 style="margin-right: 10px"
               >
               </pan-thumb>
@@ -26,13 +26,7 @@
               style="font-size: 16px"
             >
               {{ item.name }}
-
-              <snippet-svg
-                style="margin-right: 5px"
-                icon="#icon-pinglun"
-              ></snippet-svg>
-              {{ item.snippetCount }}</el-link
-            >
+            </el-link>
           </div>
         </li>
       </ul>
@@ -42,6 +36,7 @@
 
 <script>
 import PanThumb from '@/components/PanThumb'
+import usersService from '@/api/users'
 
 export default {
   name: 'SnippetUserList',
@@ -53,7 +48,19 @@ export default {
       userList: []
     }
   },
-  created () {}
+  async created () {
+    await this.getUsers()
+  },
+  methods: {
+    async getUsers () {
+      await usersService.fetchList().then((response) => {
+        this.userList = response.data.data
+      })
+    },
+    onAvatar (uname) {
+      return 'http://localhost:3000/upload/avatar/' + uname
+    }
+  }
 }
 </script>
 
