@@ -125,6 +125,7 @@
 
 <script>
 import authService from '@/api/auth'
+import auth from '@/utils/auth'
 
 export default {
   name: 'SnippetLogin',
@@ -151,7 +152,7 @@ export default {
           type: 'success'
         })
         const accessToken = response.data.access_token
-        console.log(accessToken)
+        auth.setToken(accessToken)
         that.$router.push({ name: 'home' })
       })
     }

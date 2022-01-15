@@ -1,5 +1,6 @@
 import axios from 'axios' // 引用axios
-import { getToken } from '@/utils/auth'
+import auth from '@/utils/auth'
+import notify from '@/components/SnippetNotification/notify.js'
 
 // create an axios instance
 const service = axios.create({
@@ -20,7 +21,7 @@ service.interceptors.request.use(
   (config) => {
     // do something before request is sent
 
-    config.headers.Authorization = 'Bearer ' + getToken()
+    config.headers.Authorization = 'Bearer ' + auth.getToken()
 
     return config
   },
@@ -34,20 +35,22 @@ service.interceptors.request.use(
 // response interceptor
 service.interceptors.response.use(
   (response) => {
-    const res = response.data
-
-    // 如果接收到 401 异常，说明权限认证失败，跳转到登录界面
-    if (res.statusCode === 401) {
-      this.$router.push({
-        path: 'login',
-        query: { redirect: this.$router.currentRoute.fullPath } // 从哪个页面跳转
-      })
-    } else {
-      return response
-    }
+    return response
   },
   (error) => {
-    return Promise.reject(error.response.data)
+    const errorData = error.response.data
+
+    // 错误统一提示
+    notify({
+      content: errorData.msg,
+      type: 'error'
+    })
+
+    // 如果接收到 401 异常，说明权限认证失败，跳转到登录界面
+    if (errorData.statusCode === 401) {
+      location.replace('/login')
+    }
+    return Promise.reject(errorData)
   }
 )
 
