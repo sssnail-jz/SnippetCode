@@ -50,7 +50,7 @@
         </div>
       </el-form-item>
       <el-form-item>
-        <Upload v-model="postForm.cover" />
+        <snippet-upload ref="upload" @uname="onUname"></snippet-upload>
       </el-form-item>
     </el-form>
     <el-button type="primary" @click="onCreateSnippet">提交</el-button>
@@ -60,7 +60,7 @@
 <script>
 import Tinymce from '@/components/Tinymce'
 import MdInput from '@/components/MDinput'
-import Upload from '@/components/Upload/SingleImage3'
+import SnippetUpload from '@/components/SnippetUpload'
 import ElDragSelect from '@/components/DragSelect'
 import snippetService from '@/api/snippet'
 
@@ -76,7 +76,7 @@ export default {
   components: {
     Tinymce,
     MdInput,
-    Upload,
+    SnippetUpload,
     ElDragSelect
   },
   data () {
@@ -113,23 +113,33 @@ export default {
     }
   },
   methods: {
-    // 提交表单
     onCreateSnippet () {
-      var that = this
-      snippetService.createSnippet(this.postForm).then(function (response) {
-        that.$notify({
+      // 上传 snippet 封面
+      this.$refs.upload.$refs.upload.submit()
+
+      // 上传 snippet body
+      snippetService.createSnippet(this.postForm).then((response) => {
+        this.$notify({
           content: '创建成功！',
           type: 'success'
         })
 
         const snippetId = response.data._id
-        that.$router.push({
+        this.$router.push({
           name: 'snippet-detail',
           params: {
             snippetId: snippetId
           }
         })
       })
+    },
+
+    /**
+     * 文件上传组件在选择文件之后会构造文件名为 uuid + filename，
+     * 服务端将以 uname 保存文件，这里保持 snippet-cover 与 uname 一致
+     */
+    onUname (uname) {
+      this.postForm.cover = uname
     }
   }
 }

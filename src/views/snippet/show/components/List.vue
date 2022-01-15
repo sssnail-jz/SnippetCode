@@ -24,6 +24,10 @@
       </div>
 
       <el-card class="box-card-content line-numbers">
+        <div>
+          <img style="max-width: 200px" :src="onCover(item.cover)" alt="" />
+        </div>
+
         <div class="content-container" v-html="item.content"></div>
       </el-card>
     </el-card>
@@ -57,6 +61,7 @@ export default {
         this.snippetList = response.data.data
       })
     },
+
     // 初始化高亮
     initPrism () {
       this.prismTimer = setInterval(() => {
@@ -65,6 +70,7 @@ export default {
         this.prismTimer = undefined
       }, 0)
     },
+
     // 跳转到文章详情
     onGoToDetail (itemId) {
       this.$router.push({
@@ -73,6 +79,11 @@ export default {
           snippetId: itemId
         }
       })
+    },
+
+    // 获取文章封面
+    onCover (uname) {
+      return 'http://localhost:3000/upload/' + uname
     }
   }
 }
@@ -116,5 +127,10 @@ export default {
 
 .el-divider--horizontal {
   height: 2px;
+}
+
+.img-cover {
+  width: 200px;
+  height: 150px;
 }
 </style>
