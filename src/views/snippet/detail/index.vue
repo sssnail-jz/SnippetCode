@@ -3,7 +3,7 @@
     <el-col :xs="0" :md="1" :lg="1" :xl="1"
       ><div class="grid-content"></div
     ></el-col>
-    <el-col :xs="23" :md="16" :lg="16" :xl="16" class="col-content">
+    <el-col :xs="23" :md="15" :lg="15" :xl="15" class="col-content">
       <!-- content 列表组件 -->
       <el-card
         class="el-card-snippet-content"
@@ -48,7 +48,7 @@
       </el-card>
     </el-col>
     <!-- aside -->
-    <el-col :xs="0" :md="5" :lg="5" :xl="5" class="col-aside">
+    <el-col :xs="0" :md="6" :lg="6" :xl="6" class="col-aside">
       <user-profile class="el-card-snippet-aside hidden-sm-and-down" />
     </el-col>
     <el-col :xs="0" :md="1" :lg="1" :xl="1"
@@ -60,8 +60,10 @@
 <script>
 import Prism from '@/assets/hightlight/prism.js'
 import UserProfile from './components/UserProfile.vue'
-import snippetRequest from '@/utils/snippetRequest'
 import ContentDialog from '@/components/SnippetContentDialog'
+import snippetService from '@/api/snippet'
+import commentService from '@/api/comment'
+import replyService from '@/api/reply'
 
 export default {
   /**
@@ -80,58 +82,39 @@ export default {
     }
   },
   async created () {
-    await this.fetchData()
-    await this.fetchCommentData()
+    await this.getDetail()
+    await this.getCommentLis()
     this.initPrism()
   },
   methods: {
     // 添加回复，这里的参数集合了 子组件 emit 的参数和父组件自己的参数
     // 第一个参数为父组件自己的，后面的为子组件的
-    async handleAddReply (...arg) {
-      console.log(arg)
+    handleAddReply (...arg) {
       var that = this
-      await snippetRequest
-        .post(`/reply/${arg[0]._id}`, {
-          content: arg[2]
+      replyService.createReply(arg[0]._id, { content: arg[2] }).then((res) => {
+        that.$notify({
+          content: '添加回复成功',
+          type: 'success'
         })
-        .then((res) => {
-          that.$notify({
-            content: '添加回复成功',
-            type: 'success'
-          })
-          // 添加回复成功，更新评论数据
-          that.fetchCommentData()
-        })
-        .catch((error) => {
-          const err = JSON.parse(error.request.responseText)
-          that.$notify({
-            content: err.msg,
-            type: 'error'
-          })
-        })
+
+        // 添加回复成功，更新评论数据
+        this.getCommentLis()
+      })
     },
 
     // 添加评论
     async handleAddComment (event, content) {
       var that = this
-      await snippetRequest
-        .post(`/comment/${this.snippetDetail._id}`, {
-          content: content
-        })
-        .then((res) => {
+      await commentService
+        .createComment(this.snippetDetail._id, { content: content })
+        .then((response) => {
           that.$notify({
             content: '添加评论成功',
             type: 'success'
           })
+
           // 添加评论成功，更新评论数据
-          that.fetchCommentData()
-        })
-        .catch((error) => {
-          const err = JSON.parse(error.request.responseText)
-          that.$notify({
-            content: err.msg,
-            type: 'error'
-          })
+          this.getCommentLis()
         })
     },
 
@@ -146,45 +129,24 @@ export default {
     initPrism () {
       this.prismTimer = setInterval(() => {
         Prism.highlightAll()
+
         clearInterval(this.prismTimer)
         this.prismTimer = undefined
       }, 0)
     },
 
-    // 通过 snippet id 获取 snippet 信息
-    async fetchData () {
-      var that = this
-      await snippetRequest
-        .get('/snippet/' + this.snippetId)
-        .then((res) => {
-          this.snippetDetail = res.data.data
-          // console.log(this.snippetDetail)
-        })
-        .catch((error) => {
-          console.log(error)
-          that.$notify({
-            content: '获取snippet Detail 失败!',
-            type: 'error'
-          })
-        })
+    // 拉取 snippet 详情
+    async getDetail () {
+      await snippetService.fetchDetail(this.snippetId).then((response) => {
+        this.snippetDetail = response.data.data
+      })
     },
 
-    // 通过 snippet id 获取此 snippet 对应的评论
-    async fetchCommentData () {
-      var that = this
-      await snippetRequest
-        .get('/comment/' + this.snippetId)
-        .then((res) => {
-          this.comments = res.data.data
-          console.log(this.comments)
-        })
-        .catch((error) => {
-          console.log(error)
-          that.$notify({
-            content: '获取评论列表失败!',
-            type: 'error'
-          })
-        })
+    // 拉取评论列表
+    async getCommentLis () {
+      await commentService.fetchList(this.snippetId).then((response) => {
+        this.comments = response.data.data
+      })
     }
   }
 }

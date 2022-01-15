@@ -53,16 +53,7 @@ export default {
       userList: []
     }
   },
-  created () {
-    // axios
-    //   .get('/user/user-list')
-    //   .then((res) => {
-    //     this.userList = res.data
-    //   })
-    //   .catch((err) => {
-    //     console.error(err)
-    //   })
-  }
+  created () {}
 }
 </script>
 

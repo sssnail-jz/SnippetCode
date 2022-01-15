@@ -33,7 +33,7 @@
 <script>
 import Mallki from '@/components/TextHoverEffect/Mallki'
 import Prism from '@/assets/hightlight/prism.js'
-import snippetRequest from '@/utils/snippetRequest'
+import snippetServer from '@/api/snippet'
 
 export default {
   name: 'SnippetList',
@@ -46,28 +46,16 @@ export default {
       prismTimer: undefined
     }
   },
-  // 将 created 改为异步是为了配合 prism
   async created () {
-    await this.fetchData()
+    await this.gethList()
     this.initPrism()
   },
   methods: {
     // 获取 snippet 列表
-    async fetchData () {
-      var that = this
-      await snippetRequest
-        .get('/snippet')
-        .then((res) => {
-          this.snippetList = res.data.data
-          // console.log(this.snippetList)
-        })
-        .catch((error) => {
-          console.log(error)
-          that.$notify({
-            content: '获取snippet列表失败!',
-            type: 'error'
-          })
-        })
+    async gethList () {
+      await snippetServer.fetchList().then((response) => {
+        this.snippetList = response.data.data
+      })
     },
     // 初始化高亮
     initPrism () {

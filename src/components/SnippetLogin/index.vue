@@ -124,7 +124,8 @@
 </template>
 
 <script>
-import snippetRequest from '@/utils/snippetRequest'
+import authService from '@/api/auth'
+
 export default {
   name: 'SnippetLogin',
   data () {
@@ -141,30 +142,18 @@ export default {
     onLoginButton () {
       this.dynamicClass = 'bounceRight'
     },
-    async onLogin (event) {
+    onLogin (event) {
       event.preventDefault()
       var that = this
-      await snippetRequest
-        .post(
-          `/auth/login?username=${this.loginForm.username}&password=${this.loginForm.password}`
-        )
-        .then(function (response) {
-          that.$notify({
-            content: '登录成功！',
-            type: 'success'
-          })
-          const accessToken = response.data.access_token
-          console.log(accessToken)
-          that.$router.push({ name: 'home' })
+      authService.login(this.loginForm).then(function (response) {
+        that.$notify({
+          content: '登录成功！',
+          type: 'success'
         })
-        .catch(function (error) {
-          // 解析 snippet server 自定义的异常信息
-          const err = JSON.parse(error.request.responseText)
-          that.$notify({
-            content: err.msg,
-            type: 'error'
-          })
-        })
+        const accessToken = response.data.access_token
+        console.log(accessToken)
+        that.$router.push({ name: 'home' })
+      })
     }
   }
 }
@@ -447,7 +436,8 @@ input
  */
 @media screen and (max-width: 990px)
   .user_options-forms
-    min-height: 350px
+    // 好
+    min-height: 410px
 
     .forms_buttons
       flex-direction: column

@@ -62,7 +62,7 @@ import Tinymce from '@/components/Tinymce'
 import MdInput from '@/components/MDinput'
 import Upload from '@/components/Upload/SingleImage3'
 import ElDragSelect from '@/components/DragSelect'
-import snippetRequest from '@/utils/snippetRequest'
+import snippetService from '@/api/snippet'
 
 const defaultForm = {
   title: '',
@@ -114,32 +114,22 @@ export default {
   },
   methods: {
     // 提交表单
-    async onCreateSnippet () {
+    onCreateSnippet () {
       var that = this
+      snippetService.createSnippet(this.postForm).then(function (response) {
+        that.$notify({
+          content: '创建成功！',
+          type: 'success'
+        })
 
-      await snippetRequest
-        .post('/snippet', this.postForm)
-        .then(function (response) {
-          that.$notify({
-            content: '创建成功！',
-            type: 'success'
-          })
-          const snippetId = response.data._id
-          that.$router.push({
-            name: 'snippet-detail',
-            params: {
-              snippetId: snippetId
-            }
-          })
+        const snippetId = response.data._id
+        that.$router.push({
+          name: 'snippet-detail',
+          params: {
+            snippetId: snippetId
+          }
         })
-        .catch(function (error) {
-          // 解析 snippet server 自定义的异常信息
-          const err = JSON.parse(error.request.responseText)
-          that.$notify({
-            content: err.msg,
-            type: 'error'
-          })
-        })
+      })
     }
   }
 }
