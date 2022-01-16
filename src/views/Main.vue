@@ -1,10 +1,12 @@
 <template>
   <el-container>
     <el-header height="40px" style="line-height: 40px">
+      <!-- 展开、收起侧边栏 -->
       <span
         class="iconfont"
-        :class="collapseIcon"
-        @click="changeCollapse"
+        v-if="sidebarVisible"
+        :class="sidebarCollapse.bCollapse ? 'icon-shouqi' : 'icon-zhankai'"
+        @click="toggleSideBar"
       ></span>
     </el-header>
     <el-main>
@@ -18,21 +20,15 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
-  data () {
-    return {}
-  },
   computed: {
-    ...mapState(['isCollapse']),
-    collapseIcon () {
-      return this.isCollapse ? 'icon-shouqi' : 'icon-zhankai'
-    }
+    ...mapGetters(['sidebarVisible', 'sidebarCollapse'])
   },
   methods: {
-    changeCollapse: function () {
-      this.$store.commit('changeCollapse')
+    toggleSideBar () {
+      this.$store.dispatch('app/toggleSideBar')
     }
   }
 }

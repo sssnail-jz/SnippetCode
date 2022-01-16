@@ -2,12 +2,12 @@
   <el-menu
     default-active="2"
     class="el-menu-vertical-demo"
+    :class="sidebarCollapse.style"
     background-color="#304156"
     text-color="#B2BECD"
     active-text-color="gray"
     :unique-opened="true"
-    :collapse="isCollapse"
-    :style="menuStyleObject"
+    :collapse="sidebarCollapse.bCollapse"
     :router="true"
     :collapse-transition="false"
   >
@@ -48,12 +48,19 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
-  name: 'SnippetMenu',
+  name: 'SnippetSideBar',
+
+  data () {
+    return {
+      isCollapse: 'no-collapse'
+    }
+  },
+
   computed: {
-    ...mapState(['isCollapse', 'menuStyleObject'])
+    ...mapGetters(['sidebarCollapse'])
   }
 }
 </script>
@@ -79,5 +86,11 @@ export default {
   margin-left: -10px;
   margin-right: 10px;
   margin-bottom: -2px;
+}
+
+.collapse {
+}
+.no-collapse {
+  width: 170px;
 }
 </style>

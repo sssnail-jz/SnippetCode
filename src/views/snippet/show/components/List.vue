@@ -27,7 +27,6 @@
         <div>
           <img style="height: 120px" :src="onCover(item.cover)" alt="" />
         </div>
-
         <div class="content-container" v-html="item.content"></div>
       </el-card>
     </el-card>
@@ -106,15 +105,17 @@ export default {
 .box-card-content {
   padding: 10px;
   margin-top: 10px;
-  height: 480px;
+  height: 380px;
   overflow: hidden;
   position: relative;
+  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 20%) !important;
 }
+
 /*
-  模型：300 + 10 + 10 + 20 + 20 + 120 = 480
+  模型：200 + 10 + 10 + 20 + 20 + 120 = 380
 */
 .content-container {
-  height: 300px;
+  height: 200px;
   overflow: hidden;
 }
 

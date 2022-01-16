@@ -1,21 +1,25 @@
 <template>
   <el-container>
-    <snippet-menu />
+    <snippet-side-bar v-if="sidebarVisible" />
     <el-main>
       <router-view></router-view>
     </el-main>
-    <snippet-drawer />
+    <snippet-config-table />
   </el-container>
 </template>
 
 <script>
-import SnippetMenu from '@/components/SnippetMenu'
-import SnippetDrawer from '@/components/SnippetDrawer'
+import SnippetSideBar from '@/components/SnippetSideBar'
+import SnippetConfigTable from '@/components/SnippetConfigTable'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
-    SnippetMenu,
-    SnippetDrawer
+    SnippetSideBar,
+    SnippetConfigTable
+  },
+  computed: {
+    ...mapGetters(['sidebarVisible'])
   }
 }
 </script>
