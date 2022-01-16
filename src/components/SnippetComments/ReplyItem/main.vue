@@ -21,13 +21,20 @@
         </span>
         <span class="comment-meta inline-block">
           <span> — </span>
+          <img
+            class="avatar-30"
+            :src="avatar"
+            alt=""
+            v-if="avatar"
+            @click="handleClickAvatar"
+          />
           <a
             target="_blank"
             href="javascript:void(0)"
             @click="handleClickAuthor($event)"
             >{{ author }}</a
           >
-          <span class="comments-date"> · {{ time | filterTime }}</span>
+          <span class="comments-date"> · {{ time }}</span>
         </span>
       </div>
     </div>
@@ -39,6 +46,7 @@ export default {
   name: 'ReplyItem',
   props: {
     author: String,
+    avatar: String,
     content: String,
     tools: Array,
     time: [String, Number]
@@ -55,56 +63,10 @@ export default {
     handleClickAuthor (event) {
       event.stopPropagation()
       this.$emit('clickAuthor', this)
-    }
-  },
-  filters: {
-    filterTime (value) {
-      if (!value) {
-        return '未知时间'
-      }
-      if (Object.prototype.toString.call(value) === '[object String]') {
-        return value
-      }
-      if (value === '' || isNaN(value)) {
-        return '未知时间'
-      }
-      if (value <= 0) {
-        return '未知时间'
-      }
-      if (value < 10000000000) {
-        value *= 1000
-      }
-      const time = new Date(value)
-      const tY = time.getFullYear()
-      const tM =
-        time.getMonth() + 1 < 10
-          ? '0' + (time.getMonth() + 1)
-          : time.getMonth() + 1
-      const tD = time.getDate() < 10 ? '0' + time.getDate() : time.getDate()
-      const th = time.getHours() < 10 ? '0' + time.getHours() : time.getHours()
-      const tm =
-        time.getMinutes() < 10 ? '0' + time.getMinutes() : time.getMinutes()
-      const ts =
-        time.getSeconds() < 10 ? '0' + time.getSeconds() : time.getSeconds()
-      const now = new Date()
-      const nY = now.getFullYear()
-      const nM =
-        now.getMonth() + 1 < 10
-          ? '0' + (now.getMonth() + 1)
-          : now.getMonth() + 1
-      const nD = now.getDate() < 10 ? '0' + now.getDate() : now.getDate()
-      let result = ''
-      if (tY !== nY) {
-        result += tY + '年'
-      }
-      if (tM !== nM || tD !== nD) {
-        result += tM + '月'
-        result += tD + '日'
-      }
-      if (result === '') {
-        result = th + ':' + tm + ':' + ts
-      }
-      return result
+    },
+    handleClickAvatar (event) {
+      event.stopPropagation()
+      this.$emit('clickAvatar', this)
     }
   }
 }
@@ -150,5 +112,13 @@ export default {
 }
 .inline-block {
   display: inline-block;
+}
+.avatar-30 {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-bottom: -10px;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 </style>

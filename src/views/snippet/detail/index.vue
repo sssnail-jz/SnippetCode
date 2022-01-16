@@ -24,6 +24,7 @@
             v-for="comment in comments"
             :key="comment._id"
             :author="comment.author.name"
+            :avatar="onAvatar(comment.author.avatar)"
             :content="comment.content"
             :time="comment.createdDate"
             :hasReply="hasReplys(comment)"
@@ -35,6 +36,7 @@
               v-for="reply in comment.replys"
               :key="reply._id"
               :author="reply.author.name"
+              :avatar="onAvatar(reply.author.avatar)"
               :content="reply.content"
               :time="reply.createdDate"
             >
@@ -147,6 +149,10 @@ export default {
       await commentService.fetchList(this.snippetId).then((response) => {
         this.comments = response.data.data
       })
+    },
+
+    onAvatar (uname) {
+      return 'http://localhost:3000/upload/avatar/' + uname
     }
   }
 }

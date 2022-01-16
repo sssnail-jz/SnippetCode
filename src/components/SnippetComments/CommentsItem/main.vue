@@ -11,7 +11,8 @@
     </div>
     <div class="comments-box">
       <div class="comments-trigger">
-        <div class="pull-right comments-option">
+        <!-- 右侧工具栏 -->
+        <div v-if="tools" class="pull-right comments-option">
           <a
             href="javascript:void(0)"
             class="ml10"
@@ -25,6 +26,7 @@
             <span v-if="item.text">{{ item.text }}</span>
           </a>
         </div>
+        <!-- 作者 -->
         <strong
           ><a
             target="_blank"
@@ -33,20 +35,21 @@
             >{{ author }}</a
           ></strong
         >
-        <span class="comments-date"> · {{ time | filterTime }}</span>
+        <!-- 时间 -->
+        <span class="comments-date"> · {{ time }}</span>
       </div>
       <div class="comments-content">
         <p>{{ content }}</p>
       </div>
       <p class="comments-ops">
+        <span class="ml15">回复</span>
+        <!-- 选项 -->
         <template v-for="item in ops">
           <span class="coments-ops-item ml15" v-if="item.name" :key="item.name">
             <i :class="item.icon + ' coments-ops-icon'" v-if="item.icon"></i>
             <span class="coments-ops-text">{{ item.name }}</span>
           </span>
         </template>
-
-        <span class="ml15">回复</span>
       </p>
       <div class="reply-list" v-show="hasReply">
         <slot></slot>
@@ -90,18 +93,18 @@ export default {
     avatar: String,
     author: String,
     content: String,
-    ops: Array,
-    tools: Array,
     time: [String, Number],
     hasReply: Boolean
   },
   data () {
     return {
       dialogVisible: false,
-      dialogContent: ''
+      dialogContent: '',
+      ops: [{ name: '隐藏' }],
+      tools: [{ name: '举报', title: '举报', text: '举报' }]
     }
   },
-  computed: {},
+  created () {},
   methods: {
     handleClickAvatar (event) {
       event.stopPropagation()
@@ -119,56 +122,6 @@ export default {
       event.stopPropagation()
       this.dialogVisible = false
       this.$emit('contentReady', this, this.dialogContent)
-    }
-  },
-  filters: {
-    filterTime (value) {
-      if (!value) {
-        return '未知时间'
-      }
-      if (Object.prototype.toString.call(value) === '[object String]') {
-        return value
-      }
-      if (value === '' || isNaN(value)) {
-        return '未知时间'
-      }
-      if (value <= 0) {
-        return '未知时间'
-      }
-      if (value < 10000000000) {
-        value *= 1000
-      }
-      const time = new Date(value)
-      const tY = time.getFullYear()
-      const tM =
-        time.getMonth() + 1 < 10
-          ? '0' + (time.getMonth() + 1)
-          : time.getMonth() + 1
-      const tD = time.getDate() < 10 ? '0' + time.getDate() : time.getDate()
-      const th = time.getHours() < 10 ? '0' + time.getHours() : time.getHours()
-      const tm =
-        time.getMinutes() < 10 ? '0' + time.getMinutes() : time.getMinutes()
-      const ts =
-        time.getSeconds() < 10 ? '0' + time.getSeconds() : time.getSeconds()
-      const now = new Date()
-      const nY = now.getFullYear()
-      const nM =
-        now.getMonth() + 1 < 10
-          ? '0' + (now.getMonth() + 1)
-          : now.getMonth() + 1
-      const nD = now.getDate() < 10 ? '0' + now.getDate() : now.getDate()
-      let result = ''
-      if (tY !== nY) {
-        result += tY + '年'
-      }
-      if (tM !== nM || tD !== nD) {
-        result += tM + '月'
-        result += tD + '日'
-      }
-      if (result === '') {
-        result = th + ':' + tm + ':' + ts
-      }
-      return result
     }
   }
 }
