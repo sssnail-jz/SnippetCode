@@ -4,7 +4,6 @@
       ><div class="grid-content"></div
     ></el-col>
     <el-col :xs="23" :md="15" :lg="15" :xl="15" class="col-content">
-      <!-- content 列表组件 -->
       <el-card
         class="el-card-snippet-content"
         shadow="never"
@@ -51,7 +50,12 @@
     </el-col>
     <!-- aside -->
     <el-col :xs="0" :md="6" :lg="6" :xl="6" class="col-aside">
-      <user-profile class="el-card-snippet-aside hidden-sm-and-down" />
+      <user-profile
+        v-if="userInfo"
+        class="el-card-snippet-aside hidden-sm-and-down"
+        :name="userInfo.name"
+        :avatar="onAvatar(userInfo.avatar)"
+      />
     </el-col>
     <el-col :xs="0" :md="1" :lg="1" :xl="1"
       ><div class="grid-content"></div
@@ -80,6 +84,7 @@ export default {
     return {
       prismTimer: undefined,
       snippetDetail: undefined,
+      userInfo: undefined,
       comments: undefined
     }
   },
@@ -141,6 +146,7 @@ export default {
     async getDetail () {
       await snippetService.fetchDetail(this.snippetId).then((response) => {
         this.snippetDetail = response.data.data
+        this.userInfo = this.snippetDetail.author
       })
     },
 

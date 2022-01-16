@@ -5,6 +5,7 @@
 <script>
 import echarts from 'echarts' // echarts theme
 import resize from './mixins/resize'
+import tagService from '@/api/tag'
 require('echarts/theme/dark')
 
 export default {
@@ -12,10 +13,13 @@ export default {
   mixins: [resize],
   data () {
     return {
-      chart: null
+      chart: null,
+      chartData: []
     }
   },
-  mounted () {
+
+  async mounted () {
+    await this.getTags()
     this.$nextTick(() => {
       this.initChart()
     })
@@ -38,23 +42,16 @@ export default {
         },
         legend: {
           left: 'center',
-          bottom: '10',
-          data: ['C/C++', 'Web', 'Nest', 'Java', 'Desktop']
+          bottom: '10'
         },
         series: [
           {
-            name: 'WEEKLY WRITE ARTICLES',
+            name: 'snippet tags',
             type: 'pie',
             roseType: 'radius',
             radius: [15, this.hight],
             center: ['50%', '38%'],
-            data: [
-              { value: 150, name: 'C/C++' },
-              { value: 240, name: 'Web' },
-              { value: 149, name: 'Nest' },
-              { value: 100, name: 'Java' },
-              { value: 320, name: 'Desktop' }
-            ],
+            data: this.chartData,
             animationEasing: 'cubicInOut',
             animationDuration: 3000,
             label: {
@@ -62,6 +59,17 @@ export default {
             }
           }
         ]
+      })
+    },
+    async getTags () {
+      await tagService.fetchList().then((response) => {
+        var result = response.data.data
+        for (var i = 0; i < result.length; i++) {
+          var el = { name: '', value: 0 }
+          el.name = result[i].name
+          el.value = Math.floor(Math.random() * 20) + 1
+          this.chartData.push(el)
+        }
       })
     }
   }

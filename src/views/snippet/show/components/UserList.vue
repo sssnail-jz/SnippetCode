@@ -36,7 +36,7 @@
 
 <script>
 import PanThumb from '@/components/PanThumb'
-import usersService from '@/api/users'
+import userService from '@/api/user'
 
 export default {
   name: 'SnippetUserList',
@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     async getUsers () {
-      await usersService.fetchList().then((response) => {
+      await userService.fetchList().then((response) => {
         this.userList = response.data.data
       })
     },

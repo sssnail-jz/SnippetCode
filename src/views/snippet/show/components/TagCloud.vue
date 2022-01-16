@@ -5,7 +5,7 @@
     <div class="text item">
       <el-link
         :key="item.title"
-        v-for="item in snippetTagCloudList"
+        v-for="item in tagList"
         style="
           margin-right: 10px;
           margin-bottom: 10px;
@@ -13,32 +13,36 @@
           color: black;
         "
         class="pan-btn"
-        :class="item.color"
+        :class="tagColorList[Math.floor(Math.random() * tagColorList.length)]"
       >
-        {{ item.title }}
+        {{ item.name }}
+        ( {{ Math.floor(Math.random() * 20) + 1 }} )
       </el-link>
     </div>
   </el-card>
 </template>
 
 <script>
+import tagService from '@/api/tag'
+
 export default {
-  name: 'SnippetUserList',
+  name: 'SnippetTagCloudList',
 
   data () {
     return {
-      snippetTagCloudList: []
+      tagList: undefined,
+      tagColorList: ['pink-btn', 'yellow-btn', 'green-btn']
     }
   },
-  created () {
-    // axios
-    //   .get('/snippet/snippet-tag-cloud')
-    //   .then((res) => {
-    //     this.snippetTagCloudList = res.data
-    //   })
-    //   .catch((err) => {
-    //     console.error(err)
-    //   })
+  async created () {
+    await this.getTags()
+  },
+  methods: {
+    async getTags () {
+      await tagService.fetchList().then((response) => {
+        this.tagList = response.data.data
+      })
+    }
   }
 }
 </script>

@@ -134,6 +134,7 @@ img {
 }
 .ml10 {
   margin-left: 10px !important;
+  font-size: 14px;
 }
 .ml15 {
   margin-left: 15px !important;

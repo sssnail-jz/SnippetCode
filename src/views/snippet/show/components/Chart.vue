@@ -3,7 +3,7 @@
   <el-card class="box-card-aside" shadow="nerver" style="border: 0">
     <el-divider content-position="right">统计</el-divider>
     <div class="text item" style="height: 300px">
-      <pie-chart :hight="85" />
+      <pie-chart :hight="80" />
     </div>
   </el-card>
 </template>
@@ -13,6 +13,7 @@ import PieChart from '@/components/Charts/PieChart.vue'
 
 export default {
   name: 'SnippetUserList',
+
   components: {
     PieChart
   }

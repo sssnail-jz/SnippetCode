@@ -1,23 +1,18 @@
 <template>
   <el-card shadow="never" style="border-radius: 0; background: none">
     <el-card>
-      <el-divider content-position="right">User</el-divider>
-
       <div class="user-profile">
         <div class="box-center">
           <pan-thumb
-            :image="user.avatar"
+            :image="avatar"
             :height="'100px'"
             :width="'100px'"
             :hoverable="false"
           >
-            <div>Hello</div>
-            {{ user.role }}
           </pan-thumb>
         </div>
         <div class="box-center">
-          <div class="user-name text-center">{{ user.name }}</div>
-          <div class="user-role text-center text-muted">{{ user.role }}</div>
+          <div class="user-name text-center">{{ name }}</div>
         </div>
       </div>
 
@@ -61,19 +56,7 @@
 import PanThumb from '@/components/PanThumb'
 export default {
   components: { PanThumb },
-  props: {
-    user: {
-      type: Object,
-      default: () => {
-        return {
-          name: '',
-          email: '',
-          avatar: '',
-          role: ''
-        }
-      }
-    }
-  }
+  props: { name: String, email: String, avatar: String }
 }
 </script>
 
