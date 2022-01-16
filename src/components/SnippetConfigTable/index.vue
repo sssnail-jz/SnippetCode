@@ -15,14 +15,24 @@
       <el-card class="box-card-aside" shadow="nerver" style="border: 0">
         <el-divider content-position="right">风格设置</el-divider>
         <el-card class="box-card-aside">
-          sidebar 显示：<br />
+          导航栏：<br />
           <el-switch
             v-model="value1"
             active-text="显示"
             inactive-text="隐藏"
             @change="closeSideBar"
           >
-          </el-switch>
+          </el-switch
+          ><br /><br />
+          文章封面：<br />
+          <el-switch
+            v-model="value2"
+            active-text="显示"
+            inactive-text="隐藏"
+            @change="closeCover"
+          >
+          </el-switch
+          ><br />
         </el-card>
         <el-divider content-position="right">维护信息</el-divider>
         <el-card class="box-card-aside">
@@ -56,16 +66,18 @@ export default {
       drawer: false,
       green: '#0bbd87',
       blue: '#0000ff',
-      value1: undefined
+      value1: undefined,
+      value2: undefined
     }
   },
 
   created () {
     this.value1 = this.sidebarVisible
+    this.value2 = this.coverVisible
   },
 
   computed: {
-    ...mapGetters(['sidebarVisible'])
+    ...mapGetters(['sidebarVisible', 'coverVisible'])
   },
 
   methods: {
@@ -74,6 +86,9 @@ export default {
     },
     closeSideBar () {
       this.$store.dispatch('app/closeSideBar')
+    },
+    closeCover () {
+      this.$store.dispatch('snippet/closeCover')
     }
   }
 }

@@ -24,10 +24,11 @@
       </div>
 
       <el-card class="box-card-content line-numbers">
-        <div>
+        <div v-if="coverVisible">
           <img style="height: 120px" :src="onCover(item.cover)" alt="" />
         </div>
         <div class="content-container" v-html="item.content"></div>
+        <!-- <div class="more-div"></div> -->
       </el-card>
     </el-card>
   </div>
@@ -37,22 +38,31 @@
 import Mallki from '@/components/TextHoverEffect/Mallki'
 import Prism from '@/assets/hightlight/prism.js'
 import snippetServer from '@/api/snippet'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'SnippetList',
+
   components: {
     Mallki
   },
+
   data () {
     return {
       snippetList: [],
       prismTimer: undefined
     }
   },
+
+  computed: {
+    ...mapGetters(['coverVisible'])
+  },
+
   async created () {
     await this.gethList()
     this.initPrism()
   },
+
   methods: {
     // 获取 snippet 列表
     async gethList () {
@@ -103,7 +113,6 @@ export default {
 }
 
 .box-card-content {
-  padding: 10px;
   margin-top: 10px;
   height: 380px;
   overflow: hidden;
@@ -115,8 +124,20 @@ export default {
   模型：200 + 10 + 10 + 20 + 20 + 120 = 380
 */
 .content-container {
-  height: 200px;
+  height: 100%;
+  /* height: 200px; */
   overflow: hidden;
+}
+
+.more-div {
+  width: 100%;
+  height: 5px;
+  background-color: black;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+
+  background: linear-gradient(rgb(250, 250, 250), rgb(200, 200, 200));
 }
 
 .el-link-content-header {

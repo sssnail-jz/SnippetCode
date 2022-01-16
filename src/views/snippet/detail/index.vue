@@ -44,7 +44,8 @@
           <content-dialog
             @contentReady="handleAddComment"
             style="margin-left: 40px"
-          ></content-dialog>
+          >
+          </content-dialog>
         </div>
       </el-card>
     </el-col>

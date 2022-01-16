@@ -1,5 +1,5 @@
 const state = {
-  visible: false, // 很奇怪初始化为 false 不管用
+  visible: false,
   collapse: {
     bCollapse: false,
     style: 'no-collapse'
