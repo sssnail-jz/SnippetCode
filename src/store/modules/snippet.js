@@ -1,5 +1,5 @@
 const state = {
-  coverVisible: false
+  coverVisible: true
 }
 
 const mutations = {

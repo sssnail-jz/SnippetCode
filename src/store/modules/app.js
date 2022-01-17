@@ -1,8 +1,8 @@
 const state = {
-  visible: false,
+  visible: true,
   collapse: {
-    bCollapse: false,
-    style: 'no-collapse'
+    bCollapse: true,
+    style: 'collapse'
   }
 }
 

@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-upload
-      action="http://localhost:3000/upload"
+      action="http://localhost:3000/upload/cover"
       list-type="picture-card"
       :auto-upload="false"
       :limit="1"
@@ -39,7 +39,7 @@ export default {
       dialogImageUrl: '',
       dialogVisible: false,
       disabled: false,
-      dataObj: { uname: '', dir: 'cover' },
+      dataObj: { uname: '' },
       headers: { Authorization: '' }
     }
   },

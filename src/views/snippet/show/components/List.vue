@@ -27,8 +27,11 @@
         <div v-if="coverVisible">
           <img style="height: 120px" :src="onCover(item.cover)" alt="" />
         </div>
-        <div class="content-container" v-html="item.content"></div>
-        <!-- <div class="more-div"></div> -->
+        <div
+          class="content-container"
+          :style="{ height: coverVisible ? '220px' : '340px' }"
+          v-html="item.content"
+        ></div>
       </el-card>
     </el-card>
   </div>
@@ -124,7 +127,6 @@ export default {
   模型：200 + 10 + 10 + 20 + 20 + 120 = 380
 */
 .content-container {
-  height: 100%;
   /* height: 200px; */
   overflow: hidden;
 }
