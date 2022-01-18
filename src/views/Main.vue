@@ -1,13 +1,7 @@
 <template>
   <el-container>
-    <el-header height="40px" style="line-height: 40px">
-      <!-- 展开、收起侧边栏 -->
-      <span
-        class="iconfont"
-        v-if="sidebarVisible"
-        :class="sidebarCollapse.bCollapse ? 'icon-shouqi' : 'icon-zhankai'"
-        @click="toggleSideBar"
-      ></span>
+    <el-header height="50px" style="line-height: 50px">
+      <snippet-header></snippet-header>
     </el-header>
     <el-main>
       <overlay-scrollbars ref="osComponentRef" style="height: 100%">
@@ -20,17 +14,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import SnippetHeader from '@/components/SnippetHeader'
 
 export default {
-  computed: {
-    ...mapGetters(['sidebarVisible', 'sidebarCollapse'])
-  },
-  methods: {
-    toggleSideBar () {
-      this.$store.dispatch('app/toggleSideBar')
-    }
-  }
+  components: { SnippetHeader }
 }
 </script>
 
@@ -45,10 +32,5 @@ export default {
 .el-main {
   background-color: #f0f0f5;
   padding: 0;
-}
-
-/*  */
-.collapse-icon {
-  font-size: 30px;
 }
 </style>

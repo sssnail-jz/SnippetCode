@@ -8,6 +8,7 @@ import SnippetDetail from '../views/snippet/detail'
 import Count from '../views/personal/Count.vue'
 import Calculate from '../views/personal/Calculate.vue'
 import SnippetLogin from '@/components/SnippetLogin'
+import Profile from '../views/user/profile'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,7 @@ const router = new VueRouter({
       path: '/home',
       name: 'home',
       component: Home,
+      meta: { title: 'Home' },
       // 通过命名路由重定向
       redirect: { name: 'main' },
       children: [
@@ -34,25 +36,35 @@ const router = new VueRouter({
           path: 'main',
           name: 'main',
           component: Main,
+          meta: { title: 'Main' },
           // 通过命名路由重定向
           redirect: { name: 'snippet-show' },
           children: [
             {
               path: 'snippet-show',
               name: 'snippet-show',
+              meta: { title: 'SnippetShow' },
               component: SnippetShow
             },
             {
               path: 'snippet-create',
               name: 'snippet-create',
+              meta: { title: 'SnippetCreate' },
               component: SnippetEdit
             },
             {
               path: 'snippet-detail/:snippetId',
               name: 'snippet-detail',
-              // 将路由参数转换为 props
               props: true,
+              meta: { title: 'SnippetDetail' },
               component: SnippetDetail
+            },
+            {
+              path: 'profile/:userId',
+              name: 'profile',
+              props: true,
+              meta: { title: 'Profile' },
+              component: Profile
             },
             {
               path: 'count',
