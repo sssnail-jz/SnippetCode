@@ -19,7 +19,22 @@ npm run build
 ```
 npm run lint
 ```
-
+## 整体介绍
+  当初学习完 css、html、js、nodejs，mongoose之后，曾在没用任何框架的前提下尝试写了一个 snail 的博客网站（现在看来当然奇丑无比），但是那时还不知道 vue，前端框架和后端框架，之后马上便对 vue 感兴趣，于是打算用 vue 重写 snial 博客网站——snippet！
+  
+  snippet 只是对 vue 学习成果的实践，所以snippet 肯定会超过 snail 几倍，但是之后再回头看时，肯定不堪入目，然而重要的却是——实践！
+  
+  由于前端和后端都是本人从 0 开始撸出来的，两手抓的工作量确实使人顾而后怕
+  
+  
+  ```
+  前端使用 vue 框架
+  
+  后端使用 nestjs 框架
+  
+  参考：vue-element-admin
+  ```
+  
 ## 主要功能
 ### 【登录注册】
 服务端通过 nestjs 的 【auth 模块、local strategy模块、jwt strategy模块】实现【认证、token、权限控制】
